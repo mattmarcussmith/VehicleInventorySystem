@@ -44,13 +44,13 @@ namespace matthewsmith_c968.models
             Parts.Add(vehiclePart8);
 
             // Prepopulated data for the main form Product table
-            Product toyotaCamry = new Product(1, "2019 Toyota Camry", 24540m, 10, 5, 10);
-            Product hondaCivic = new Product(2, "2020 Honda Civic", 22000m, 8, 4, 8);
-            Product fordMustang = new Product(3, "2018 Ford Mustang", 35000m, 5, 3, 6);
-            Product chevroletTahoe = new Product(4, "2021 Chevrolet Tahoe", 55000m, 7, 3, 7);
-            Product subaruOutback = new Product(5, "2019 Subaru Outback", 30000m, 6, 2, 5);
-            Product bmwX5 = new Product(6, "2022 BMW X5", 65000m, 4, 1, 4);
-            Product mercedesCClass = new Product(7, "2021 Mercedes C-Class", 50000m, 3, 2, 3);
+            Product toyotaCamry = new Product(9, "2019 Toyota Camry", 24540m, 10, 5, 10);
+            Product hondaCivic = new Product(10, "2020 Honda Civic", 22000m, 8, 4, 8);
+            Product fordMustang = new Product(11, "2018 Ford Mustang", 35000m, 5, 3, 6);
+            Product chevroletTahoe = new Product(12, "2021 Chevrolet Tahoe", 55000m, 7, 3, 7);
+            Product subaruOutback = new Product(13, "2019 Subaru Outback", 30000m, 6, 2, 5);
+            Product bmwX5 = new Product(14, "2022 BMW X5", 65000m, 4, 1, 4);
+            Product mercedesCClass = new Product(15, "2021 Mercedes C-Class", 50000m, 3, 2, 3);
 
             // Products added to binding list
             Products.Add(toyotaCamry);
