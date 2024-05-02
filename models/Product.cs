@@ -27,8 +27,23 @@ namespace matthewsmith_c968.models
         public int Max { get; set; }
 
 
+
         // A list of Parts that are associated with Product
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
+
+        public Product(int productID, string name, decimal price, int inStock, int min, int max)
+        {
+            ProductID = productID;
+            Name = name;
+            Price = price;
+            InStock = inStock;
+            Min = min;
+            Max = max;
+    
+           
+        }
+
+
 
         // Add Part to associated Product
         public void AddAssociatedPart(Part part)
