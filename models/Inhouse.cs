@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace matthewsmith_c968.models
 {
-    internal class Inhouse : Part
+    public class Inhouse : Part
     {
         public int machineID;
        public int MachineID { get; set; }
+
     public Inhouse(){}
     public Inhouse(int partID, string name, int inStock, decimal price, int min, int max)
         {

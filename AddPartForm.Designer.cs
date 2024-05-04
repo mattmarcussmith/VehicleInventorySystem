@@ -55,7 +55,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 39);
+            this.label1.Size = new System.Drawing.Size(80, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Add Part";
             // 
@@ -65,7 +65,7 @@
             this.inHouse_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.inHouse_radio.Location = new System.Drawing.Point(390, 62);
             this.inHouse_radio.Name = "inHouse_radio";
-            this.inHouse_radio.Size = new System.Drawing.Size(141, 33);
+            this.inHouse_radio.Size = new System.Drawing.Size(75, 19);
             this.inHouse_radio.TabIndex = 1;
             this.inHouse_radio.TabStop = true;
             this.inHouse_radio.Text = "In-House";
@@ -78,7 +78,7 @@
             this.outSourced_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.outSourced_radio.Location = new System.Drawing.Point(592, 62);
             this.outSourced_radio.Name = "outSourced_radio";
-            this.outSourced_radio.Size = new System.Drawing.Size(169, 33);
+            this.outSourced_radio.Size = new System.Drawing.Size(88, 19);
             this.outSourced_radio.TabIndex = 2;
             this.outSourced_radio.TabStop = true;
             this.outSourced_radio.Text = "Outsourced";
@@ -95,6 +95,7 @@
             // 
             // nameInput
             // 
+            this.nameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.nameInput.Location = new System.Drawing.Point(390, 226);
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(296, 31);
@@ -102,6 +103,7 @@
             // 
             // inventoryInput
             // 
+            this.inventoryInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.inventoryInput.Location = new System.Drawing.Point(390, 278);
             this.inventoryInput.Name = "inventoryInput";
             this.inventoryInput.Size = new System.Drawing.Size(296, 31);
@@ -109,6 +111,7 @@
             // 
             // inStockInput
             // 
+            this.inStockInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.inStockInput.Location = new System.Drawing.Point(390, 325);
             this.inStockInput.Name = "inStockInput";
             this.inStockInput.Size = new System.Drawing.Size(296, 31);
@@ -116,6 +119,7 @@
             // 
             // maxInput
             // 
+            this.maxInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.maxInput.Location = new System.Drawing.Point(390, 388);
             this.maxInput.Name = "maxInput";
             this.maxInput.Size = new System.Drawing.Size(141, 31);
@@ -123,6 +127,7 @@
             // 
             // minInput
             // 
+            this.minInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.minInput.Location = new System.Drawing.Point(632, 388);
             this.minInput.Name = "minInput";
             this.minInput.Size = new System.Drawing.Size(100, 31);
@@ -130,6 +135,7 @@
             // 
             // sourceInput
             // 
+            this.sourceInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.sourceInput.Location = new System.Drawing.Point(390, 456);
             this.sourceInput.Name = "sourceInput";
             this.sourceInput.Size = new System.Drawing.Size(192, 31);
@@ -222,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 1230);
+            this.ClientSize = new System.Drawing.Size(1036, 1139);
             this.Controls.Add(this.sourceLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);

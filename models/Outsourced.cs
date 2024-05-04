@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace matthewsmith_c968.models
 {
-    internal class Outsourced : Part
+    public class Outsourced : Part
     {
         public string companyName;
         public string CompanyName { get; set; }

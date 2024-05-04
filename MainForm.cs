@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,11 +14,18 @@ namespace matthewsmith_c968
 {
     public partial class MainForm : Form
     {
+        private static int updatedPartID = 9455;
+        private int GeneratedID()
+        {
+            Random random = new Random();
+            return random.Next(2423, updatedPartID);
+        }
+
         public MainForm()
         {
             InitializeComponent();
             MainScreen();
-
+         
             this.Text = "Main Screen";
             
           
@@ -32,10 +40,7 @@ namespace matthewsmith_c968
             totalPartsInventory.DataSource = Inventory.Parts;
             dgvParts.DataSource = totalPartsInventory;
 
-         
-         
-
-
+        
             // Entire row selected when clicked for Parts
             dgvParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Read only Grid
@@ -82,41 +87,107 @@ namespace matthewsmith_c968
             dgvProducts.ClearSelection();
         }
 
-        private void dgvParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+
+
+
+        // Search Event
+        private void search_Part(object sender, EventArgs e)
         {
 
-        }
+            string searchQuery = searchPartInput.Text;
+            int searchQueryID;
+            
 
-       
-        // *** Part click click events **//
-
-        // Part Deleve Event
-        private void part_Delete(object sender, EventArgs e)
-        {
-            if (dgvParts.CurrentRow == null)
+            if (string.IsNullOrEmpty(searchQuery))
             {
-                MessageBox.Show("No part was selected", "Please make a selection!");
+                MessageBox.Show("Error: Please enter a Part ID number.");
                 return;
             }
+          
 
-            foreach (DataGridViewRow row in dgvParts.SelectedRows)
+            searchQueryID = int.Parse(searchQuery);
+        
+            Part matchingPartID = Inventory.LookupPart(searchQueryID);
+         
+            foreach (DataGridViewRow row in dgvParts.Rows)
             {
-                dgvParts.Rows.RemoveAt(row.Index);
+               
+                Part currentRow = row.DataBoundItem as Part;
 
+                if (matchingPartID != null && matchingPartID.PartID == currentRow.PartID)
+                {
+                    row.Selected = true;
+                    break;
+                }
+               
+                else if(matchingPartID == null)
+                {
+                    MessageBox.Show("Error: Part ID does not exists.");
+                    return;
+                }
+                else if (searchQueryID < 1)
+                {
+                    MessageBox.Show("Error: Please enter a Part ID number that is greater than zero.");
+                    return;
+                }
+                else
+                {
+                    row.Selected = false;
+                 
+                  
+
+                }
+            }
+        }
+
+        // *** Part click events **//
+
+        // Part Delete Event
+        private void part_Delete(object sender, EventArgs e)
+        {
+
+            if (dgvParts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No part was selected to delete", "Please make a selection!");
+                return;
+            }
+            foreach (DataGridViewRow row in dgvParts.SelectedRows)
+                {
+                    dgvParts.Rows.RemoveAt(row.Index);
 
             }
-         
 
+            
         }
 
         private void part_Add(object sender, EventArgs e)
         {
-            new AddPartForm().ShowDialog();
-
+           new AddPartForm().ShowDialog();
         }
 
+        
         private void part_Modify(object sender, EventArgs e)
         {
+            Part part = dgvParts.CurrentRow.DataBoundItem as Part;
+            int generatedID = GeneratedID();
+
+            if (dgvParts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No part was selected to modify", "Please make a selection!");
+                return;
+            }
+            if (part is Inhouse)
+            {
+                ModifyPartForm form = new ModifyPartForm(generatedID, (Inhouse) part);
+                form.ShowDialog();
+            }
+            if(part is Outsourced)
+            {
+                ModifyPartForm form = new ModifyPartForm(generatedID, (Outsourced) part);
+                form.ShowDialog();
+
+            }
 
         }
 

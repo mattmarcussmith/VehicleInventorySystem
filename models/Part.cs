@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace matthewsmith_c968.models
 {
-    abstract class Part
+    public abstract class Part
     {
         // Fields
         private int partID;

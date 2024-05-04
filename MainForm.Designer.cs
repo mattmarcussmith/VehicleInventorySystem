@@ -54,7 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchPartInput = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -74,9 +74,9 @@
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.RowHeadersWidth = 82;
             this.dgvParts.RowTemplate.Height = 33;
+            this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvParts.Size = new System.Drawing.Size(560, 369);
             this.dgvParts.TabIndex = 0;
-            this.dgvParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParts_CellContentClick);
             this.dgvParts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.clearBindingParts);
             // 
             // Column1
@@ -278,7 +278,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.875F);
             this.label1.Location = new System.Drawing.Point(151, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(568, 46);
+            this.label1.Size = new System.Drawing.Size(364, 29);
             this.label1.TabIndex = 9;
             this.label1.Text = "Inventory Management System";
             // 
@@ -288,7 +288,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label2.Location = new System.Drawing.Point(152, 132);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 39);
+            this.label2.Size = new System.Drawing.Size(52, 26);
             this.label2.TabIndex = 10;
             this.label2.Text = "Part";
             // 
@@ -298,7 +298,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label3.Location = new System.Drawing.Point(805, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(137, 39);
+            this.label3.Size = new System.Drawing.Size(87, 26);
             this.label3.TabIndex = 11;
             this.label3.Text = "Product";
             // 
@@ -311,6 +311,7 @@
             this.button8.TabIndex = 12;
             this.button8.Text = "Search";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.search_Part);
             // 
             // button9
             // 
@@ -322,25 +323,26 @@
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // searchPartInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(508, 184);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 31);
-            this.textBox1.TabIndex = 14;
+            this.searchPartInput.Location = new System.Drawing.Point(508, 184);
+            this.searchPartInput.Name = "searchPartInput";
+            this.searchPartInput.Size = new System.Drawing.Size(211, 22);
+            this.searchPartInput.TabIndex = 14;
+            this.searchPartInput.TextChanged += new System.EventHandler(this.product_Delete);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(1154, 184);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 31);
+            this.textBox2.Size = new System.Drawing.Size(220, 22);
             this.textBox2.TabIndex = 15;
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1540, 941);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchPartInput);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label3);
@@ -365,8 +367,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvParts;
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -380,7 +380,7 @@
         protected System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchPartInput;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -394,6 +394,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        public System.Windows.Forms.DataGridView dgvParts;
     }
 }
 
