@@ -1,4 +1,4 @@
-# matthewsmith-c968
+# Vehicle Inventory Management System 
 
 This Inventory Management System is designed to streamline the inventory processes for a small manufacturing organization. 
 It provides a user-friendly interface for adding, modifying, and deleting parts and products, as well as searching functionality.
