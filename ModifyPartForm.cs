@@ -20,8 +20,6 @@ namespace matthewsmith_c968
         {
             InitializeComponent();
             this.Text = "Modify Part";
-
-
         }
         // Changes the Label to In-House when the radio button is clicked
         private void InHouse_Change(object sender, EventArgs e)
@@ -33,6 +31,8 @@ namespace matthewsmith_c968
         {
             sourceLabel.Text = "Company Name";
         }
+
+        // *************** Text Property requires String inputs  **++++++++++++//
         public ModifyPartForm(int partID, Inhouse inHousePart)
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace matthewsmith_c968
 
 
         }
-
+        // *************** Text Property requires String inputs  **++++++++++++//
         public ModifyPartForm(int partID, Outsourced outSourcedPart)
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace matthewsmith_c968
 
         }
 
+        // *************** Save Modified Part  **++++++++++++//
         private void SavePartButton_Click(object sender, EventArgs e)
         {
 
@@ -72,6 +73,7 @@ namespace matthewsmith_c968
             int machineID;
             string companyName;
 
+            // Converts inputs back to respected Data Types 
             name = nameInput.Text;
             partID = int.Parse(partIDInput.Text);
             minimumQuantity = int.Parse(minInput.Text);
@@ -94,15 +96,12 @@ namespace matthewsmith_c968
                 return;
             }
 
-
-
             // Conditonal Input options based on radio selection
-
             if (inHouse_radio.Checked)
             {
-                
                 try
                 {
+                    // Parsing Machine ID after Input is clicked is required because both machineID AND companyName use the same input field
                     machineID = int.Parse(sourceInput.Text);
                     Inhouse inHouse = new Inhouse(partID, name, totalStock, price, minimumQuantity, maximumQuantity, machineID);
                     Inventory.updatePart(partID, inHouse);
@@ -119,7 +118,8 @@ namespace matthewsmith_c968
            
             else if (outSourced_radio.Checked)
             {
-                  companyName = sourceInput.Text;
+                 // Parsing companyName after Input is clicked is required because both companyName and MachineID use the same input field
+                 companyName = sourceInput.Text;
 
                 // Check if companyName contains numeric characters
                 if (companyName.Any(char.IsDigit))
@@ -129,7 +129,6 @@ namespace matthewsmith_c968
                 }
                 try
                     {
-                  
                     Outsourced outSourced = new Outsourced(partID, name, totalStock, price, minimumQuantity, maximumQuantity, companyName);
                         Inventory.updatePart(partID, outSourced);
                         outSourced_radio.Checked = true;
@@ -138,10 +137,7 @@ namespace matthewsmith_c968
                     {
                         MessageBox.Show("Error: Company Name must be character values.", "Please try again.");
                         return;
-
                     }
-                
-               
             }
             else
             { 
@@ -150,12 +146,9 @@ namespace matthewsmith_c968
             }
 
             Close();
-         
             MainScreen.dgvParts.Update();
             MainScreen.dgvParts.Refresh();
-
         }
-
         private void CancelModifyPart(object sender, EventArgs e)
         {
             this.Close();

@@ -358,7 +358,6 @@
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.dgvParts);
             this.Name = "MainForm";
-            this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);

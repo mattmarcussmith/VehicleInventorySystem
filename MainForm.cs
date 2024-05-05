@@ -91,14 +91,14 @@ namespace matthewsmith_c968
 
 
 
-        // Search Event
+        // *************** Search Part Event **++++++++++++//
         private void search_Part(object sender, EventArgs e)
         {
 
             string searchQuery = searchPartInput.Text;
             int searchQueryID;
             
-
+            
             if (string.IsNullOrEmpty(searchQuery))
             {
                 MessageBox.Show("Error: Please enter a Part ID number.");
@@ -106,15 +106,16 @@ namespace matthewsmith_c968
             }
           
 
+            // Convert string into an Integer value and passes it to the LookupPart method
             searchQueryID = int.Parse(searchQuery);
-        
             Part matchingPartID = Inventory.LookupPart(searchQueryID);
          
             foreach (DataGridViewRow row in dgvParts.Rows)
             {
-               
+            
                 Part currentRow = row.DataBoundItem as Part;
-
+                
+                //Compares current row in the iteration to the ID passed in LookupPart
                 if (matchingPartID != null && matchingPartID.PartID == currentRow.PartID)
                 {
                     row.Selected = true;
@@ -134,39 +135,20 @@ namespace matthewsmith_c968
                 else
                 {
                     row.Selected = false;
-                 
-                  
-
+                   
                 }
             }
         }
 
-        // *** Part click events **//
+        // *************** Part Click Events **++++++++++++//
 
-        // Part Delete Event
-        private void part_Delete(object sender, EventArgs e)
-        {
-
-            if (dgvParts.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("No part was selected to delete", "Please make a selection!");
-                return;
-            }
-            foreach (DataGridViewRow row in dgvParts.SelectedRows)
-                {
-                    dgvParts.Rows.RemoveAt(row.Index);
-
-            }
-
-            
-        }
-
+        // Part Add 
         private void part_Add(object sender, EventArgs e)
         {
-           new AddPartForm().ShowDialog();
+            new AddPartForm().ShowDialog();
         }
 
-        
+        // Part Modify
         private void part_Modify(object sender, EventArgs e)
         {
             Part part = dgvParts.CurrentRow.DataBoundItem as Part;
@@ -179,23 +161,49 @@ namespace matthewsmith_c968
             }
             if (part is Inhouse)
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, (Inhouse) part);
+                ModifyPartForm form = new ModifyPartForm(generatedID, (Inhouse)part);
                 form.ShowDialog();
             }
-            if(part is Outsourced)
+            if (part is Outsourced)
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, (Outsourced) part);
+                ModifyPartForm form = new ModifyPartForm(generatedID, (Outsourced)part);
                 form.ShowDialog();
 
             }
+        }
+        // Part Delete
+        private void part_Delete(object sender, EventArgs e)
+        {
+
+            if (dgvParts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No part was selected to delete", "Please make a selection!");
+                return;
+            }
+            foreach (DataGridViewRow row in dgvParts.SelectedRows)
+                {
+                    dgvParts.Rows.RemoveAt(row.Index);
+
+            } 
+        }
+
+        // *************** Product Click Events **++++++++++++//
+
+        // Add Product
+        private void product_Add(object sender, EventArgs e)
+        {
+
+        }
+        // Modify Product
+        private void product_Modify(object sender, EventArgs e)
+        {
 
         }
 
-
-        // *** Product click events **//
+        // Delete Product
         private void product_Delete(object sender, EventArgs e)
         {
-            if(dgvProducts.CurrentRow == null)
+            if(dgvProducts.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No product was selected", "Please make a selection");
                 return;
@@ -208,7 +216,9 @@ namespace matthewsmith_c968
 
             if (dgvProducts.CurrentRow != null)
             {
+                // Checks if the Product thats clicked is null or does NOT have Associated parts
                 Product product = dgvProducts.CurrentRow.DataBoundItem as Product;
+
                 if (product != null && product.AssociatedParts.Count > 0)
                 {
                     MessageBox.Show("Please remove assigned Parts before deleting a Product");
@@ -218,19 +228,8 @@ namespace matthewsmith_c968
             }
         }
 
-        private void product_Modify(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        private void product_Add(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
