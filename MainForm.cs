@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace matthewsmith_c968
 {
     public partial class MainForm : Form
-    {
+    { 
         private static int updatedPartID = 9455;
         private int GeneratedID()
         {
@@ -38,186 +38,199 @@ namespace matthewsmith_c968
             // Set the data to the Parts Grid View
             var totalPartsInventory = new BindingSource();
             totalPartsInventory.DataSource = Inventory.Parts;
-            dgvParts.DataSource = totalPartsInventory;
+            partGrid.DataSource = totalPartsInventory;
 
         
-            // Entire row selected when clicked for Parts
-            dgvParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Entire row selected
+            partGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Read only Grid
-            dgvParts.ReadOnly = true;
+            partGrid.ReadOnly = true;
             // Cannot select more than one row
-            dgvParts.MultiSelect = false;
+            partGrid.MultiSelect = false;
             // Cannot create rows
-            dgvParts.AllowUserToAddRows = false;
+            partGrid.AllowUserToAddRows = false;
 
             // Set the data to the Products Grid View
             var totalProductsInventory = new BindingSource();
             totalProductsInventory.DataSource = Inventory.Products;
-            dgvProducts.DataSource = totalProductsInventory;
+            productGrid.DataSource = totalProductsInventory;
 
-           
-
-            // Entire row selected when clicked for Parts
-            dgvParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Entire row selected
+            productGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Read only Grid
-            dgvParts.ReadOnly = true;
+            productGrid.ReadOnly = true;
             // Cannot select more than one row
-            dgvParts.MultiSelect = false;
+            productGrid.MultiSelect = false;
             // Cannot create rows
-            dgvParts.AllowUserToAddRows = false;
-
-            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            // Read only Grid
-            dgvProducts.ReadOnly = true;
-            // Cannot select more than one row
-            dgvProducts.MultiSelect = false;
-            // Cannot create rows
-            dgvProducts.AllowUserToAddRows = false;
+            productGrid.AllowUserToAddRows = false;
 
         }
 
         // Clears selected row on application start
-        private void clearBindingParts(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void ClearBindingParts(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvParts.ClearSelection();
+            partGrid.ClearSelection();
         }
 
-        private void clearBindingProducts(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void ClearBindingProducts(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvProducts.ClearSelection();
+            productGrid.ClearSelection();
         }
 
-
-
-
-
-        // *************** Search Part Event **++++++++++++//
-        private void search_Part(object sender, EventArgs e)
-        {
-
-            string searchQuery = searchPartInput.Text;
-            int searchQueryID;
-            
-            
-            if (string.IsNullOrEmpty(searchQuery))
-            {
-                MessageBox.Show("Error: Please enter a Part ID number.");
+        // *************** Search Part Event ***************//
+        private void SearchPart_Button(object sender, EventArgs e)
+        {   
+            string searchValue = searchPartInput.Text;
+          
+            if(!int.TryParse(searchValue, out _)){
+                MessageBox.Show("Please enter a numeric value");
                 return;
             }
-          
 
-            // Convert string into an Integer value and passes it to the LookupPart method
-            searchQueryID = int.Parse(searchQuery);
-            Part matchingPartID = Inventory.LookupPart(searchQueryID);
-         
-            foreach (DataGridViewRow row in dgvParts.Rows)
+            int searchID = int.Parse(searchPartInput.Text);
+            Part matchingPartFound = Inventory.LookupPart(searchID);
+            if(searchID < 0 )
             {
-            
-                Part currentRow = row.DataBoundItem as Part;
-                
-                //Compares current row in the iteration to the ID passed in LookupPart
-                if (matchingPartID != null && matchingPartID.PartID == currentRow.PartID)
+                MessageBox.Show("Please enter a numeric value greater than 0");
+                return;
+            }
+            if (matchingPartFound == null)
+            {
+                MessageBox.Show("This Part ID does not excist");
+                return;
+            }
+            foreach (DataGridViewRow currentIteration in partGrid.Rows)
+            {
+                Part part = (Part)currentIteration.DataBoundItem;
+                if (part.PartID == matchingPartFound.PartID)
                 {
-                    row.Selected = true;
+                    currentIteration.Selected = true;
                     break;
                 }
-               
-                else if(matchingPartID == null)
+                else 
                 {
-                    MessageBox.Show("Error: Part ID does not exists.");
-                    return;
-                }
-                else if (searchQueryID < 1)
-                {
-                    MessageBox.Show("Error: Please enter a Part ID number that is greater than zero.");
-                    return;
-                }
-                else
-                {
-                    row.Selected = false;
-                   
+                    currentIteration.Selected = false;
                 }
             }
+
         }
 
-        // *************** Part Click Events **++++++++++++//
+
+
+        // *************** Part Click Events ***************//
 
         // Part Add 
-        private void part_Add(object sender, EventArgs e)
+        private void PartAdd_Button(object sender, EventArgs e)
         {
             new AddPartForm().ShowDialog();
         }
 
         // Part Modify
-        private void part_Modify(object sender, EventArgs e)
+        private void PartModify_Button(object sender, EventArgs e)
         {
-            Part part = dgvParts.CurrentRow.DataBoundItem as Part;
+            Part part = partGrid.CurrentRow.DataBoundItem as Part;
             int generatedID = GeneratedID();
 
-            if (dgvParts.SelectedRows.Count == 0)
+            if (partGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No part was selected to modify", "Please make a selection!");
                 return;
             }
-            if (part is Inhouse)
+            if (part is Inhouse inhouse)
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, (Inhouse)part);
+                ModifyPartForm form = new ModifyPartForm(generatedID, inhouse);
                 form.ShowDialog();
             }
-            if (part is Outsourced)
+            if (part is Outsourced outsourced)
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, (Outsourced)part);
+                ModifyPartForm form = new ModifyPartForm(generatedID, outsourced);
                 form.ShowDialog();
 
             }
         }
         // Part Delete
-        private void part_Delete(object sender, EventArgs e)
+        private void PartDelete_Button(object sender, EventArgs e)
         {
 
-            if (dgvParts.SelectedRows.Count == 0)
+            if (partGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No part was selected to delete", "Please make a selection!");
                 return;
             }
-            foreach (DataGridViewRow row in dgvParts.SelectedRows)
+            foreach (DataGridViewRow row in partGrid.SelectedRows)
                 {
-                    dgvParts.Rows.RemoveAt(row.Index);
+                    partGrid.Rows.RemoveAt(row.Index);
 
             } 
         }
+        // *************** Search Part Event ***************//
+        private void SearchProduct_Button(object sender, EventArgs e)
+        {
+            string searchValue = searchProductInput.Text;
 
-        // *************** Product Click Events **++++++++++++//
+            if (!int.TryParse(searchValue, out _))
+            {
+                MessageBox.Show("Please enter a numeric value");
+                return;
+            }
+
+            int searchID = int.Parse(searchProductInput.Text);
+            Product matchingPartFound = Inventory.LookupProduct(searchID);
+            if (searchID < 0)
+            {
+                MessageBox.Show("Please enter a numeric value greater than 0");
+                return;
+            }
+            if (matchingPartFound == null)
+            {
+                MessageBox.Show("This Part ID does not excist");
+                return;
+            }
+            foreach (DataGridViewRow currentIteration in productGrid.Rows)
+            {
+                Product part = (Product)currentIteration.DataBoundItem;
+                if (part.ProductID == matchingPartFound.ProductID)
+                {
+                    currentIteration.Selected = true;
+                    break;
+                }
+                else
+                {
+                    currentIteration.Selected = false;
+                }
+            }
+        }
+        // *************** Product Click Events ***************//
 
         // Add Product
-        private void product_Add(object sender, EventArgs e)
+        private void ProductAdd_Button(object sender, EventArgs e)
         {
-
+            new AddProductForm().ShowDialog();
         }
         // Modify Product
-        private void product_Modify(object sender, EventArgs e)
+        private void ProductModify_Button(object sender, EventArgs e)
         {
 
         }
 
         // Delete Product
-        private void product_Delete(object sender, EventArgs e)
+        private void ProductDelete_Button(object sender, EventArgs e)
         {
-            if(dgvProducts.SelectedRows.Count == 0)
+            if (productGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No product was selected", "Please make a selection");
                 return;
             }
 
-            foreach(DataGridViewRow row in dgvProducts.SelectedRows)
+            foreach (DataGridViewRow row in productGrid.SelectedRows)
             {
-                dgvProducts.Rows.RemoveAt(row.Index);
+                productGrid.Rows.RemoveAt(row.Index);
             }
 
-            if (dgvProducts.CurrentRow != null)
+            if (productGrid.CurrentRow != null)
             {
                 // Checks if the Product thats clicked is null or does NOT have Associated parts
-                Product product = dgvProducts.CurrentRow.DataBoundItem as Product;
+                Product product = productGrid.CurrentRow.DataBoundItem as Product;
 
                 if (product != null && product.AssociatedParts.Count > 0)
                 {
@@ -226,10 +239,9 @@ namespace matthewsmith_c968
                 }
 
             }
+        
         }
 
-      
-
-      
+     
     }
 }

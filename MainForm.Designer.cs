@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvParts = new System.Windows.Forms.DataGridView();
+            this.partGrid = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.productGrid = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,29 +55,29 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.searchPartInput = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            this.searchProductInput = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.partGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvParts
+            // partGrid
             // 
-            this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvParts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.partGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.partGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6});
-            this.dgvParts.Location = new System.Drawing.Point(159, 218);
-            this.dgvParts.Name = "dgvParts";
-            this.dgvParts.RowHeadersWidth = 82;
-            this.dgvParts.RowTemplate.Height = 33;
-            this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParts.Size = new System.Drawing.Size(560, 369);
-            this.dgvParts.TabIndex = 0;
-            this.dgvParts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.clearBindingParts);
+            this.partGrid.Location = new System.Drawing.Point(159, 218);
+            this.partGrid.Name = "partGrid";
+            this.partGrid.RowHeadersWidth = 82;
+            this.partGrid.RowTemplate.Height = 33;
+            this.partGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.partGrid.Size = new System.Drawing.Size(560, 369);
+            this.partGrid.TabIndex = 0;
+            this.partGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ClearBindingParts);
             // 
             // Column1
             // 
@@ -129,22 +129,22 @@
             this.Column6.Visible = false;
             this.Column6.Width = 120;
             // 
-            // dgvProducts
+            // productGrid
             // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.productGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Column8,
             this.Column9,
             this.Column10,
             this.Column11,
             this.Column12});
-            this.dgvProducts.Location = new System.Drawing.Point(812, 220);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.RowHeadersWidth = 82;
-            this.dgvProducts.Size = new System.Drawing.Size(562, 369);
-            this.dgvProducts.TabIndex = 1;
-            this.dgvProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.clearBindingProducts);
+            this.productGrid.Location = new System.Drawing.Point(812, 220);
+            this.productGrid.Name = "productGrid";
+            this.productGrid.RowHeadersWidth = 82;
+            this.productGrid.Size = new System.Drawing.Size(562, 369);
+            this.productGrid.TabIndex = 1;
+            this.productGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ClearBindingProducts);
             // 
             // Column7
             // 
@@ -205,7 +205,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.part_Delete);
+            this.button1.Click += new System.EventHandler(this.PartDelete_Button);
             // 
             // button2
             // 
@@ -216,7 +216,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Modify";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.part_Modify);
+            this.button2.Click += new System.EventHandler(this.PartModify_Button);
             // 
             // button3
             // 
@@ -227,7 +227,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Add";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.part_Add);
+            this.button3.Click += new System.EventHandler(this.PartAdd_Button);
             // 
             // button4
             // 
@@ -238,7 +238,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.product_Delete);
+            this.button4.Click += new System.EventHandler(this.ProductDelete_Button);
             // 
             // button5
             // 
@@ -249,7 +249,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "Modify";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.product_Modify);
+            this.button5.Click += new System.EventHandler(this.ProductModify_Button);
             // 
             // button6
             // 
@@ -260,7 +260,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "Add";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.product_Add);
+            this.button6.Click += new System.EventHandler(this.ProductAdd_Button);
             // 
             // button7
             // 
@@ -311,7 +311,7 @@
             this.button8.TabIndex = 12;
             this.button8.Text = "Search";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.search_Part);
+            this.button8.Click += new System.EventHandler(this.SearchPart_Button);
             // 
             // button9
             // 
@@ -322,6 +322,7 @@
             this.button9.TabIndex = 13;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.SearchProduct_Button);
             // 
             // searchPartInput
             // 
@@ -329,19 +330,18 @@
             this.searchPartInput.Name = "searchPartInput";
             this.searchPartInput.Size = new System.Drawing.Size(211, 22);
             this.searchPartInput.TabIndex = 14;
-            this.searchPartInput.TextChanged += new System.EventHandler(this.product_Delete);
             // 
-            // textBox2
+            // searchProductInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(1154, 184);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 22);
-            this.textBox2.TabIndex = 15;
+            this.searchProductInput.Location = new System.Drawing.Point(1154, 184);
+            this.searchProductInput.Name = "searchProductInput";
+            this.searchProductInput.Size = new System.Drawing.Size(220, 22);
+            this.searchProductInput.TabIndex = 15;
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1540, 941);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.searchProductInput);
             this.Controls.Add(this.searchPartInput);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -355,18 +355,18 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dgvProducts);
-            this.Controls.Add(this.dgvParts);
+            this.Controls.Add(this.productGrid);
+            this.Controls.Add(this.partGrid);
             this.Name = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.DataGridView productGrid;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -380,7 +380,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox searchPartInput;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox searchProductInput;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -393,7 +393,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        public System.Windows.Forms.DataGridView dgvParts;
+        public System.Windows.Forms.DataGridView partGrid;
     }
 }
 

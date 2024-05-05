@@ -104,7 +104,7 @@ namespace matthewsmith_c968
                     // Parsing Machine ID after Input is clicked is required because both machineID AND companyName use the same input field
                     machineID = int.Parse(sourceInput.Text);
                     Inhouse inHouse = new Inhouse(partID, name, totalStock, price, minimumQuantity, maximumQuantity, machineID);
-                    Inventory.updatePart(partID, inHouse);
+                    Inventory.UpdatePart(partID, inHouse);
                     inHouse_radio.Checked = true;
 
                 }
@@ -130,7 +130,7 @@ namespace matthewsmith_c968
                 try
                     {
                     Outsourced outSourced = new Outsourced(partID, name, totalStock, price, minimumQuantity, maximumQuantity, companyName);
-                        Inventory.updatePart(partID, outSourced);
+                        Inventory.UpdatePart(partID, outSourced);
                         outSourced_radio.Checked = true;
                     }
                     catch (FormatException)
@@ -146,8 +146,8 @@ namespace matthewsmith_c968
             }
 
             Close();
-            MainScreen.dgvParts.Update();
-            MainScreen.dgvParts.Refresh();
+            MainScreen.partGrid.Update();
+            MainScreen.partGrid.Refresh();
         }
         private void CancelModifyPart(object sender, EventArgs e)
         {
