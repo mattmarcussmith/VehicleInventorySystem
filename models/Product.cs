@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace matthewsmith_c968.models
 {
-    class Product
+    public class Product
     {
 
         // Fields
@@ -38,12 +38,8 @@ namespace matthewsmith_c968.models
             Price = price;
             InStock = inStock;
             Min = min;
-            Max = max;
-    
-           
+            Max = max;    
         }
-
-
 
         // Add Part to associated Product
         public void AddAssociatedPart(Part part)

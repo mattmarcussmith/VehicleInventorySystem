@@ -267,8 +267,6 @@ namespace matthewsmith_c968.models
             Product product49 = new Product(2449, "2024 BMW X1", 42000m, 6, 1, 4);
             Product product50 = new Product(2550, "2021 Mercedes-Benz GLB", 48000m, 5, 2, 3);
 
-
-
             Products.Add(product10);
             Products.Add(product11);
             Products.Add(product12);
@@ -327,16 +325,8 @@ namespace matthewsmith_c968.models
             Products.Add(product49);
             Products.Add(product50);
 
-
-
-
-
-
         }
-
-
         // All methods for Products
-        // Add a Product to Inventory
         public static void AddProduct(Product product)
         {
             Products.Add(product);
@@ -354,7 +344,6 @@ namespace matthewsmith_c968.models
             return false;
 
         }
-
         // Find a Product
         public static Product LookupProduct(int Product)
         {

@@ -53,7 +53,7 @@ namespace matthewsmith_c968
                 minimumQuantity = int.Parse(minInput.Text);
                 maximumQuantity = int.Parse(maxInput.Text);
                 totalStock = int.Parse(inventoryInput.Text);
-                partPrice = decimal.Parse(partID.Text);
+                partPrice = decimal.Parse(partPriceInput.Text);
 
 
                 // Error Handling for Inventory conditions

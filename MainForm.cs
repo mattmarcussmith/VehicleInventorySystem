@@ -13,14 +13,16 @@ using System.Windows.Forms;
 namespace matthewsmith_c968
 {
     public partial class MainForm : Form
-    { 
-        private static int updatedPartID = 9455;
+    {
+
+        private static Random random = new Random();
+        private static int generateID;
         private int GeneratedID()
         {
-            Random random = new Random();
-            return random.Next(2423, updatedPartID);
+            int generatedID = random.Next(10000, 99999);
+        
+            return generatedID;
         }
-
         public MainForm()
         {
             InitializeComponent();
@@ -203,13 +205,25 @@ namespace matthewsmith_c968
         // *************** Product Click Events ***************//
 
         // Add Product
-        private void ProductAdd_Button(object sender, EventArgs e)
+        private void ProductSave_Button(object sender, EventArgs e)
         {
-            new AddProductForm().ShowDialog();
+            AddProductForm addNewProduct = new AddProductForm(generateID);
+            addNewProduct.ShowDialog();
         }
         // Modify Product
         private void ProductModify_Button(object sender, EventArgs e)
         {
+            Product selectedProduct = (Product)productGrid.CurrentRow.DataBoundItem;
+            int generatedID = GeneratedID();
+            if (productGrid.CurrentRow == null) 
+            {
+                MessageBox.Show("Please select a Product to modify. ");
+                return;
+            }
+
+            ModifyProductForm modifyProduct = new ModifyProductForm(generatedID, selectedProduct);
+            modifyProduct.ShowDialog();
+
 
         }
 
@@ -242,6 +256,9 @@ namespace matthewsmith_c968
         
         }
 
-     
+        private void ExitProgram(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

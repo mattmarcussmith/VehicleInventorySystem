@@ -260,17 +260,18 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "Add";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.ProductAdd_Button);
+            this.button6.Click += new System.EventHandler(this.ProductSave_Button);
             // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button7.Location = new System.Drawing.Point(1236, 693);
+            this.button7.Location = new System.Drawing.Point(1236, 674);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(138, 49);
             this.button7.TabIndex = 8;
             this.button7.Text = "Exit";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.ExitProgram);
             // 
             // label1
             // 
@@ -278,7 +279,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.875F);
             this.label1.Location = new System.Drawing.Point(151, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 29);
+            this.label1.Size = new System.Drawing.Size(568, 46);
             this.label1.TabIndex = 9;
             this.label1.Text = "Inventory Management System";
             // 
@@ -288,7 +289,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label2.Location = new System.Drawing.Point(152, 132);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 26);
+            this.label2.Size = new System.Drawing.Size(81, 39);
             this.label2.TabIndex = 10;
             this.label2.Text = "Part";
             // 
@@ -298,7 +299,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label3.Location = new System.Drawing.Point(805, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 26);
+            this.label3.Size = new System.Drawing.Size(137, 39);
             this.label3.TabIndex = 11;
             this.label3.Text = "Product";
             // 
@@ -328,14 +329,14 @@
             // 
             this.searchPartInput.Location = new System.Drawing.Point(508, 184);
             this.searchPartInput.Name = "searchPartInput";
-            this.searchPartInput.Size = new System.Drawing.Size(211, 22);
+            this.searchPartInput.Size = new System.Drawing.Size(211, 31);
             this.searchPartInput.TabIndex = 14;
             // 
             // searchProductInput
             // 
             this.searchProductInput.Location = new System.Drawing.Point(1154, 184);
             this.searchProductInput.Name = "searchProductInput";
-            this.searchProductInput.Size = new System.Drawing.Size(220, 22);
+            this.searchProductInput.Size = new System.Drawing.Size(220, 31);
             this.searchProductInput.TabIndex = 15;
             // 
             // MainForm
@@ -358,6 +359,7 @@
             this.Controls.Add(this.productGrid);
             this.Controls.Add(this.partGrid);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.partGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productGrid)).EndInit();
             this.ResumeLayout(false);

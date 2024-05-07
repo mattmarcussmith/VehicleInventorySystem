@@ -34,7 +34,7 @@
             this.partID = new System.Windows.Forms.TextBox();
             this.nameInput = new System.Windows.Forms.TextBox();
             this.inventoryInput = new System.Windows.Forms.TextBox();
-            this.inStockInput = new System.Windows.Forms.TextBox();
+            this.partPriceInput = new System.Windows.Forms.TextBox();
             this.maxInput = new System.Windows.Forms.TextBox();
             this.minInput = new System.Windows.Forms.TextBox();
             this.sourceInput = new System.Windows.Forms.TextBox();
@@ -55,7 +55,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
             this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 22);
+            this.label1.Size = new System.Drawing.Size(151, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Add Part";
             // 
@@ -65,7 +65,7 @@
             this.inHouse_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.inHouse_radio.Location = new System.Drawing.Point(390, 62);
             this.inHouse_radio.Name = "inHouse_radio";
-            this.inHouse_radio.Size = new System.Drawing.Size(75, 19);
+            this.inHouse_radio.Size = new System.Drawing.Size(141, 33);
             this.inHouse_radio.TabIndex = 1;
             this.inHouse_radio.TabStop = true;
             this.inHouse_radio.Text = "In-House";
@@ -78,7 +78,7 @@
             this.outSourced_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.outSourced_radio.Location = new System.Drawing.Point(592, 62);
             this.outSourced_radio.Name = "outSourced_radio";
-            this.outSourced_radio.Size = new System.Drawing.Size(88, 19);
+            this.outSourced_radio.Size = new System.Drawing.Size(169, 33);
             this.outSourced_radio.TabIndex = 2;
             this.outSourced_radio.TabStop = true;
             this.outSourced_radio.Text = "Outsourced";
@@ -109,13 +109,13 @@
             this.inventoryInput.Size = new System.Drawing.Size(296, 31);
             this.inventoryInput.TabIndex = 5;
             // 
-            // inStockInput
+            // partPriceInput
             // 
-            this.inStockInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.inStockInput.Location = new System.Drawing.Point(390, 325);
-            this.inStockInput.Name = "inStockInput";
-            this.inStockInput.Size = new System.Drawing.Size(296, 31);
-            this.inStockInput.TabIndex = 6;
+            this.partPriceInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.partPriceInput.Location = new System.Drawing.Point(390, 325);
+            this.partPriceInput.Name = "partPriceInput";
+            this.partPriceInput.Size = new System.Drawing.Size(296, 31);
+            this.partPriceInput.TabIndex = 6;
             // 
             // maxInput
             // 
@@ -241,7 +241,7 @@
             this.Controls.Add(this.sourceInput);
             this.Controls.Add(this.minInput);
             this.Controls.Add(this.maxInput);
-            this.Controls.Add(this.inStockInput);
+            this.Controls.Add(this.partPriceInput);
             this.Controls.Add(this.inventoryInput);
             this.Controls.Add(this.nameInput);
             this.Controls.Add(this.partID);
@@ -249,6 +249,7 @@
             this.Controls.Add(this.inHouse_radio);
             this.Controls.Add(this.label1);
             this.Name = "AddPartForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddPartForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -263,7 +264,7 @@
         private System.Windows.Forms.TextBox partID;
         private System.Windows.Forms.TextBox nameInput;
         private System.Windows.Forms.TextBox inventoryInput;
-        private System.Windows.Forms.TextBox inStockInput;
+        private System.Windows.Forms.TextBox partPriceInput;
         private System.Windows.Forms.TextBox maxInput;
         private System.Windows.Forms.TextBox minInput;
         private System.Windows.Forms.TextBox sourceInput;

@@ -187,7 +187,7 @@
             this.outSourced_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.outSourced_radio.Location = new System.Drawing.Point(567, 118);
             this.outSourced_radio.Name = "outSourced_radio";
-            this.outSourced_radio.Size = new System.Drawing.Size(88, 19);
+            this.outSourced_radio.Size = new System.Drawing.Size(169, 33);
             this.outSourced_radio.TabIndex = 20;
             this.outSourced_radio.TabStop = true;
             this.outSourced_radio.Text = "Outsourced";
@@ -200,7 +200,7 @@
             this.inHouse_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.inHouse_radio.Location = new System.Drawing.Point(365, 118);
             this.inHouse_radio.Name = "inHouse_radio";
-            this.inHouse_radio.Size = new System.Drawing.Size(75, 19);
+            this.inHouse_radio.Size = new System.Drawing.Size(141, 33);
             this.inHouse_radio.TabIndex = 19;
             this.inHouse_radio.TabStop = true;
             this.inHouse_radio.Text = "In-House";
@@ -231,6 +231,7 @@
             this.Controls.Add(this.outSourced_radio);
             this.Controls.Add(this.inHouse_radio);
             this.Name = "ModifyPartForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModifyPartForm";
             this.ResumeLayout(false);
             this.PerformLayout();
