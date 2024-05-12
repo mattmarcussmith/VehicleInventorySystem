@@ -1,32 +1,23 @@
 ﻿using matthewsmith_c968.models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace matthewsmith_c968
 {
     public partial class AddPartForm : Form
     {
-        private static int previousPartID = 9419;
+        private int generatedID;
 
-        public AddPartForm()
+        public AddPartForm(int generatedID)
         {
             InitializeComponent();
             this.Text = "Part";
-            partID.Text = GeneratedID(previousPartID).ToString();
-        }
-         private int GeneratedID(int previousPartID)
-        {
-            Random random = new Random();
-            return random.Next(2423, previousPartID);
-        }
+            this.generatedID = generatedID;
+           
 
+            
+        }
         // Changes the Label to In-House when the radio button is clicked
         private void InHouse_Change(object sender, EventArgs e)
         {
@@ -40,61 +31,80 @@ namespace matthewsmith_c968
 
         private void SavePartButton_Click(object sender, EventArgs e)
         {
-            string name;
+            string name = nameInput.Text;
             int minimumQuantity, maximumQuantity, totalStock;
             decimal partPrice;
-            int machineID;
-            string companyName;
 
-            try
+        
+
+            // Parse minimumQuantity
+            if (!int.TryParse(minInput.Text, out minimumQuantity))
             {
-                // Parsing the Input fields from Strings to Integers
-                name = nameInput.Text;
-                minimumQuantity = int.Parse(minInput.Text);
-                maximumQuantity = int.Parse(maxInput.Text);
-                totalStock = int.Parse(inventoryInput.Text);
-                partPrice = decimal.Parse(partPriceInput.Text);
-
-
-                // Error Handling for Inventory conditions
-                if (minimumQuantity > maximumQuantity)
-                {
-                    MessageBox.Show("Error: Min value cannot be greater than Max.");
-                    return;
-                }
-               
-                if ( totalStock < maximumQuantity || totalStock < minimumQuantity)
-                {
-                    MessageBox.Show("Error: Inventory must be between Max and Min");
-                    return;
-                }
-             
-            } catch {
-                MessageBox.Show("Error: Please enter numeric values for Inventory, Price, Max, and Min fields. ");
+                MessageBox.Show("Error: Minimum quantity must be a valid integer.");
                 return;
             }
 
+            // Parse maximumQuantity
+            if (!int.TryParse(maxInput.Text, out maximumQuantity))
+            {
+                MessageBox.Show("Error: Maximum quantity must be a valid integer.");
+                return;
+            }
+
+            // Parse totalStock
+            if (!int.TryParse(inventoryInput.Text, out totalStock))
+            {
+                MessageBox.Show("Error: Total stock must be a valid integer.");
+                return;
+            }
+
+            // Parse partPrice
+            if (!decimal.TryParse(partPriceInput.Text, out partPrice))
+            {
+                MessageBox.Show("Error: Part price must be a valid decimal value.");
+                return;
+            }
+
+            if (minimumQuantity > maximumQuantity)
+            {
+                MessageBox.Show("Error: Your minimum exceeds your maximum.");
+                return;
+            }
+            if (totalStock < minimumQuantity || totalStock > maximumQuantity)
+            {
+                MessageBox.Show("Error: Inventory must be between minimum and maximum");
+                return;
+            }
 
             // Conditonal Input options based on radio selection
 
             if (inHouse_radio.Checked)
-                {
-                machineID = int.Parse(sourceInput.Text);
+            {
 
-                Inhouse inHouse = new Inhouse(GeneratedID(previousPartID), name, totalStock, partPrice, minimumQuantity, maximumQuantity, machineID);
+                if(!int.TryParse(sourceInput.Text, out int machineID))
+                {
+                    MessageBox.Show("Error: Machine ID must be numeric values");
+                    return;
+                }
+
+                Inhouse inHouse = new Inhouse(generatedID, name, totalStock, partPrice, minimumQuantity, maximumQuantity, machineID);
                     Inventory.AddPart(inHouse);
                   
                 } else if(outSourced_radio.Checked)
                 {
+
+                string companyName = sourceInput.Text;
+                if (companyName.Any(char.IsDigit))
+                {
+                    MessageBox.Show("Error: Company Name must be character values.");
+                    return;
+                }
                 companyName = sourceInput.Text;
 
-                Outsourced outSourced = new Outsourced(GeneratedID(previousPartID), name, totalStock, partPrice, minimumQuantity, maximumQuantity, companyName);
+                Outsourced outSourced = new Outsourced(generatedID, name, totalStock, partPrice, minimumQuantity, maximumQuantity, companyName);
                     Inventory.AddPart(outSourced);
                    
-                } else
-                {
-                    MessageBox.Show("Error: Please select In-House or Outsourced");
-                }
+                } 
   
             Close();
 

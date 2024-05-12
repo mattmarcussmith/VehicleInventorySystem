@@ -52,7 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.minInput = new System.Windows.Forms.TextBox();
             this.maxInput = new System.Windows.Forms.TextBox();
-            this.partPriceInput = new System.Windows.Forms.TextBox();
+            this.productPriceInput = new System.Windows.Forms.TextBox();
             this.inventoryInput = new System.Windows.Forms.TextBox();
             this.nameInput = new System.Windows.Forms.TextBox();
             this.productIDInput = new System.Windows.Forms.TextBox();
@@ -305,13 +305,13 @@
             this.maxInput.Size = new System.Drawing.Size(140, 31);
             this.maxInput.TabIndex = 68;
             // 
-            // partPriceInput
+            // productPriceInput
             // 
-            this.partPriceInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.partPriceInput.Location = new System.Drawing.Point(310, 660);
-            this.partPriceInput.Name = "partPriceInput";
-            this.partPriceInput.Size = new System.Drawing.Size(244, 31);
-            this.partPriceInput.TabIndex = 67;
+            this.productPriceInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.productPriceInput.Location = new System.Drawing.Point(310, 660);
+            this.productPriceInput.Name = "productPriceInput";
+            this.productPriceInput.Size = new System.Drawing.Size(244, 31);
+            this.productPriceInput.TabIndex = 67;
             // 
             // inventoryInput
             // 
@@ -428,7 +428,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.minInput);
             this.Controls.Add(this.maxInput);
-            this.Controls.Add(this.partPriceInput);
+            this.Controls.Add(this.productPriceInput);
             this.Controls.Add(this.inventoryInput);
             this.Controls.Add(this.nameInput);
             this.Controls.Add(this.productIDInput);
@@ -468,7 +468,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox minInput;
         private System.Windows.Forms.TextBox maxInput;
-        private System.Windows.Forms.TextBox partPriceInput;
+        private System.Windows.Forms.TextBox productPriceInput;
         private System.Windows.Forms.TextBox inventoryInput;
         private System.Windows.Forms.TextBox nameInput;
         private System.Windows.Forms.TextBox productIDInput;

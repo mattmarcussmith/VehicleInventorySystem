@@ -70,12 +70,12 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            this.partGrid.Location = new System.Drawing.Point(159, 218);
+            this.partGrid.Location = new System.Drawing.Point(157, 354);
             this.partGrid.Name = "partGrid";
             this.partGrid.RowHeadersWidth = 82;
             this.partGrid.RowTemplate.Height = 33;
             this.partGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.partGrid.Size = new System.Drawing.Size(560, 369);
+            this.partGrid.Size = new System.Drawing.Size(562, 334);
             this.partGrid.TabIndex = 0;
             this.partGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ClearBindingParts);
             // 
@@ -139,10 +139,10 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            this.productGrid.Location = new System.Drawing.Point(812, 220);
+            this.productGrid.Location = new System.Drawing.Point(879, 354);
             this.productGrid.Name = "productGrid";
             this.productGrid.RowHeadersWidth = 82;
-            this.productGrid.Size = new System.Drawing.Size(562, 369);
+            this.productGrid.Size = new System.Drawing.Size(565, 334);
             this.productGrid.TabIndex = 1;
             this.productGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ClearBindingProducts);
             // 
@@ -199,9 +199,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button1.Location = new System.Drawing.Point(614, 592);
+            this.button1.Location = new System.Drawing.Point(600, 706);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 46);
+            this.button1.Size = new System.Drawing.Size(110, 39);
             this.button1.TabIndex = 2;
             this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = true;
@@ -210,9 +210,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button2.Location = new System.Drawing.Point(497, 592);
+            this.button2.Location = new System.Drawing.Point(484, 706);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 46);
+            this.button2.Size = new System.Drawing.Size(110, 39);
             this.button2.TabIndex = 3;
             this.button2.Text = "Modify";
             this.button2.UseVisualStyleBackColor = true;
@@ -221,9 +221,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button3.Location = new System.Drawing.Point(377, 593);
+            this.button3.Location = new System.Drawing.Point(368, 706);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 46);
+            this.button3.Size = new System.Drawing.Size(110, 39);
             this.button3.TabIndex = 4;
             this.button3.Text = "Add";
             this.button3.UseVisualStyleBackColor = true;
@@ -232,9 +232,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button4.Location = new System.Drawing.Point(1273, 595);
+            this.button4.Location = new System.Drawing.Point(1334, 706);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(101, 46);
+            this.button4.Size = new System.Drawing.Size(110, 39);
             this.button4.TabIndex = 5;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = true;
@@ -243,9 +243,9 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button5.Location = new System.Drawing.Point(1161, 595);
+            this.button5.Location = new System.Drawing.Point(1218, 706);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(106, 46);
+            this.button5.Size = new System.Drawing.Size(110, 39);
             this.button5.TabIndex = 6;
             this.button5.Text = "Modify";
             this.button5.UseVisualStyleBackColor = true;
@@ -254,9 +254,9 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button6.Location = new System.Drawing.Point(1048, 595);
+            this.button6.Location = new System.Drawing.Point(1102, 706);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(108, 46);
+            this.button6.Size = new System.Drawing.Size(110, 39);
             this.button6.TabIndex = 7;
             this.button6.Text = "Add";
             this.button6.UseVisualStyleBackColor = true;
@@ -265,9 +265,9 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.875F);
-            this.button7.Location = new System.Drawing.Point(1236, 674);
+            this.button7.Location = new System.Drawing.Point(1334, 763);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(138, 49);
+            this.button7.Size = new System.Drawing.Size(110, 39);
             this.button7.TabIndex = 8;
             this.button7.Text = "Exit";
             this.button7.UseVisualStyleBackColor = true;
@@ -277,7 +277,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.875F);
-            this.label1.Location = new System.Drawing.Point(151, 64);
+            this.label1.Location = new System.Drawing.Point(149, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(568, 46);
             this.label1.TabIndex = 9;
@@ -287,7 +287,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
-            this.label2.Location = new System.Drawing.Point(152, 132);
+            this.label2.Location = new System.Drawing.Point(150, 202);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 39);
             this.label2.TabIndex = 10;
@@ -297,7 +297,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.875F);
-            this.label3.Location = new System.Drawing.Point(805, 132);
+            this.label3.Location = new System.Drawing.Point(1307, 202);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 39);
             this.label3.TabIndex = 11;
@@ -306,9 +306,9 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F);
-            this.button8.Location = new System.Drawing.Point(402, 182);
+            this.button8.Location = new System.Drawing.Point(437, 300);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 30);
+            this.button8.Size = new System.Drawing.Size(90, 34);
             this.button8.TabIndex = 12;
             this.button8.Text = "Search";
             this.button8.UseVisualStyleBackColor = true;
@@ -317,9 +317,9 @@
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F);
-            this.button9.Location = new System.Drawing.Point(1048, 184);
+            this.button9.Location = new System.Drawing.Point(1354, 300);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 28);
+            this.button9.Size = new System.Drawing.Size(90, 31);
             this.button9.TabIndex = 13;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = true;
@@ -327,21 +327,21 @@
             // 
             // searchPartInput
             // 
-            this.searchPartInput.Location = new System.Drawing.Point(508, 184);
+            this.searchPartInput.Location = new System.Drawing.Point(544, 300);
             this.searchPartInput.Name = "searchPartInput";
-            this.searchPartInput.Size = new System.Drawing.Size(211, 31);
+            this.searchPartInput.Size = new System.Drawing.Size(175, 31);
             this.searchPartInput.TabIndex = 14;
             // 
             // searchProductInput
             // 
-            this.searchProductInput.Location = new System.Drawing.Point(1154, 184);
+            this.searchProductInput.Location = new System.Drawing.Point(1156, 300);
             this.searchProductInput.Name = "searchProductInput";
-            this.searchProductInput.Size = new System.Drawing.Size(220, 31);
+            this.searchProductInput.Size = new System.Drawing.Size(175, 31);
             this.searchProductInput.TabIndex = 15;
             // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(1540, 941);
+            this.ClientSize = new System.Drawing.Size(1621, 1053);
             this.Controls.Add(this.searchProductInput);
             this.Controls.Add(this.searchPartInput);
             this.Controls.Add(this.button9);
@@ -368,7 +368,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView productGrid;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -396,6 +395,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         public System.Windows.Forms.DataGridView partGrid;
+        public System.Windows.Forms.DataGridView productGrid;
     }
 }
 

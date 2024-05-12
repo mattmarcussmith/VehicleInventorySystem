@@ -355,7 +355,7 @@ namespace matthewsmith_c968.models
         {
             foreach (Product currentProduct in Products)
             {
-                if (currentProduct.ProductID == productID)
+                if (currentProduct.ProductID != productID)
                 {
                     currentProduct.Name = newUpdatedProduct.Name;
                     currentProduct.InStock = newUpdatedProduct.InStock;
@@ -366,7 +366,7 @@ namespace matthewsmith_c968.models
                     return;
                 }
             }
-
+            
         }
         public static void AddPart(Part part)
         {
@@ -401,8 +401,33 @@ namespace matthewsmith_c968.models
         }
         public static void UpdatePart(int partID, Part updatedPart)
         {
-            DeletePart(partID);
-            AddPart(updatedPart);
+            foreach(Part currentIteration in Parts)
+            {
+                if(currentIteration.PartID != partID)
+                {
+                   
+                    currentIteration.Name = updatedPart.Name;
+                    currentIteration.InStock = updatedPart.InStock;
+                    currentIteration.Price = updatedPart.Price;
+                    currentIteration.Min = updatedPart.Min;
+                    currentIteration.Max = updatedPart.Max;
+                    
+                    if(currentIteration is Inhouse inHouseParts && updatedPart is Inhouse updateInhouseParts)
+                    {
+                        inHouseParts.MachineID = updateInhouseParts.MachineID;
+                        
+                    }
+                    if(currentIteration is Outsourced outSourcedParts && updatedPart is Outsourced updatedOutSourcedParts)
+                    {
+                        outSourcedParts.CompanyName = updatedOutSourcedParts.CompanyName;
+                       
+                    }
+         
+                    return;
+                }
+            }
+     
         }
     }
+
 }

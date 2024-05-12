@@ -85,7 +85,7 @@ namespace matthewsmith_c968
             }
             if (matchingPartFound == null)
             {
-                MessageBox.Show("This Part ID does not excist");
+                MessageBox.Show("This Part ID does not exist");
                 return;
             }
 
@@ -171,24 +171,50 @@ namespace matthewsmith_c968
             }
 
             string name = nameInput.Text;
+            
             int minimumQuantity = int.Parse(minInput.Text);
             int maximumQuantity = int.Parse(maxInput.Text);
-            int price = int.Parse(partPriceInput.Text);
+            decimal price = int.Parse(partPriceInput.Text);
             int totalStock = int.Parse(inventoryInput.Text);
 
-            // Error Handling for Inventory conditions
+            // Parse minimumQuantity
+            if (!int.TryParse(minInput.Text, out minimumQuantity))
+            {
+                MessageBox.Show("Error: Minimum quantity must be a valid integer.");
+                return;
+            }
+
+            // Parse maximumQuantity
+            if (!int.TryParse(maxInput.Text, out maximumQuantity))
+            {
+                MessageBox.Show("Error: Maximum quantity must be a valid integer.");
+                return;
+            }
+
+            // Parse totalStock
+            if (!int.TryParse(inventoryInput.Text, out totalStock))
+            {
+                MessageBox.Show("Error: Total stock must be a valid integer.");
+                return;
+            }
+
+            // Parse partPrice
+            if (!decimal.TryParse(partPriceInput.Text, out price))
+            {
+                MessageBox.Show("Error: Part price must be a valid decimal value.");
+                return;
+            }
             if (minimumQuantity > maximumQuantity)
             {
-                MessageBox.Show("Error: Min value cannot be greater than Max.");
+                MessageBox.Show("Error: Your minimum exceeds your maximum.");
                 return;
             }
-
-            if (totalStock < maximumQuantity || totalStock < minimumQuantity)
+            if (totalStock < minimumQuantity || totalStock > maximumQuantity)
             {
-                MessageBox.Show("Error: Inventory must be between Max and Min");
+                MessageBox.Show("Error: Inventory must be between minimum and maximum");
                 return;
-
             }
+
             Product product = new Product(generatedID, name, price, totalStock, minimumQuantity, maximumQuantity);
             Inventory.AddProduct(product);
 

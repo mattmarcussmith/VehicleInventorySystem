@@ -15,22 +15,22 @@ namespace matthewsmith_c968
     public partial class MainForm : Form
     {
 
-        private static Random random = new Random();
-        private static int generateID;
+        public static Random random = new Random();
+        public int generateID;
         private int GeneratedID()
         {
             int generatedID = random.Next(10000, 99999);
-        
+
             return generatedID;
         }
         public MainForm()
         {
             InitializeComponent();
             MainScreen();
-         
+
             this.Text = "Main Screen";
-            
-          
+
+
         }
         public void MainScreen()
         {
@@ -42,7 +42,7 @@ namespace matthewsmith_c968
             totalPartsInventory.DataSource = Inventory.Parts;
             partGrid.DataSource = totalPartsInventory;
 
-        
+
             // Entire row selected
             partGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Read only Grid
@@ -79,26 +79,30 @@ namespace matthewsmith_c968
             productGrid.ClearSelection();
         }
 
+
+
+
         // *************** Search Part Event ***************//
         private void SearchPart_Button(object sender, EventArgs e)
-        {   
+        {
             string searchValue = searchPartInput.Text;
-          
-            if(!int.TryParse(searchValue, out _)){
+
+            if (!int.TryParse(searchValue, out _))
+            {
                 MessageBox.Show("Please enter a numeric value");
                 return;
             }
 
             int searchID = int.Parse(searchPartInput.Text);
             Part matchingPartFound = Inventory.LookupPart(searchID);
-            if(searchID < 0 )
+            if (searchID < 0)
             {
                 MessageBox.Show("Please enter a numeric value greater than 0");
                 return;
             }
             if (matchingPartFound == null)
             {
-                MessageBox.Show("This Part ID does not excist");
+                MessageBox.Show("This Part ID does not exist");
                 return;
             }
             foreach (DataGridViewRow currentIteration in partGrid.Rows)
@@ -109,7 +113,7 @@ namespace matthewsmith_c968
                     currentIteration.Selected = true;
                     break;
                 }
-                else 
+                else
                 {
                     currentIteration.Selected = false;
                 }
@@ -118,36 +122,45 @@ namespace matthewsmith_c968
         }
 
 
-
         // *************** Part Click Events ***************//
 
         // Part Add 
         private void PartAdd_Button(object sender, EventArgs e)
         {
-            new AddPartForm().ShowDialog();
+            int generatedID = GeneratedID();
+            new AddPartForm(generatedID).ShowDialog();
         }
 
         // Part Modify
         private void PartModify_Button(object sender, EventArgs e)
         {
-            Part part = partGrid.CurrentRow.DataBoundItem as Part;
-            int generatedID = GeneratedID();
+            Part part = (Part)partGrid.CurrentRow.DataBoundItem;
+           int generatedID = GeneratedID();
+
 
             if (partGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No part was selected to modify", "Please make a selection!");
                 return;
             }
+
             if (part is Inhouse inhouse)
             {
                 ModifyPartForm form = new ModifyPartForm(generatedID, inhouse);
+
                 form.ShowDialog();
+                return;
             }
-            if (part is Outsourced outsourced)
+            else if (part is Outsourced outsourced)
             {
                 ModifyPartForm form = new ModifyPartForm(generatedID, outsourced);
                 form.ShowDialog();
+                return;
 
+            }
+            else
+            {
+                MessageBox.Show("No part found with our inventory or suppliers. Please try again.");
             }
         }
         // Part Delete
@@ -159,11 +172,15 @@ namespace matthewsmith_c968
                 MessageBox.Show("No part was selected to delete", "Please make a selection!");
                 return;
             }
-            foreach (DataGridViewRow row in partGrid.SelectedRows)
+            DialogResult result = MessageBox.Show("Are you sure you want to delete?", "This cannot be undone.");
+
+            if (result == DialogResult.OK)
+            {
+                foreach (DataGridViewRow row in partGrid.SelectedRows)
                 {
                     partGrid.Rows.RemoveAt(row.Index);
-
-            } 
+                }
+            }
         }
         // *************** Search Part Event ***************//
         private void SearchProduct_Button(object sender, EventArgs e)
@@ -185,7 +202,7 @@ namespace matthewsmith_c968
             }
             if (matchingPartFound == null)
             {
-                MessageBox.Show("This Part ID does not excist");
+                MessageBox.Show("This Part ID does not exist");
                 return;
             }
             foreach (DataGridViewRow currentIteration in productGrid.Rows)
@@ -203,7 +220,6 @@ namespace matthewsmith_c968
             }
         }
         // *************** Product Click Events ***************//
-
         // Add Product
         private void ProductSave_Button(object sender, EventArgs e)
         {
@@ -215,16 +231,13 @@ namespace matthewsmith_c968
         {
             Product selectedProduct = (Product)productGrid.CurrentRow.DataBoundItem;
             int generatedID = GeneratedID();
-            if (productGrid.CurrentRow == null) 
+            if (productGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a Product to modify. ");
                 return;
             }
-
             ModifyProductForm modifyProduct = new ModifyProductForm(generatedID, selectedProduct);
             modifyProduct.ShowDialog();
-
-
         }
 
         // Delete Product
@@ -236,24 +249,24 @@ namespace matthewsmith_c968
                 return;
             }
 
-            foreach (DataGridViewRow row in productGrid.SelectedRows)
+            DialogResult result = MessageBox.Show("Are you sure you want to delete?", "This cannot be undone.");
+            if (result == DialogResult.OK)
             {
-                productGrid.Rows.RemoveAt(row.Index);
+                foreach (DataGridViewRow row in productGrid.SelectedRows)
+                {
+                    productGrid.Rows.RemoveAt(row.Index);
+                }
             }
-
             if (productGrid.CurrentRow != null)
             {
                 // Checks if the Product thats clicked is null or does NOT have Associated parts
                 Product product = productGrid.CurrentRow.DataBoundItem as Product;
-
                 if (product != null && product.AssociatedParts.Count > 0)
                 {
                     MessageBox.Show("Please remove assigned Parts before deleting a Product");
                     return;
                 }
-
             }
-        
         }
 
         private void ExitProgram(object sender, EventArgs e)

@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.inHouse_radio = new System.Windows.Forms.RadioButton();
             this.outSourced_radio = new System.Windows.Forms.RadioButton();
-            this.partID = new System.Windows.Forms.TextBox();
+            this.partIDInput = new System.Windows.Forms.TextBox();
             this.nameInput = new System.Windows.Forms.TextBox();
             this.inventoryInput = new System.Windows.Forms.TextBox();
             this.partPriceInput = new System.Windows.Forms.TextBox();
@@ -85,13 +85,13 @@
             this.outSourced_radio.UseVisualStyleBackColor = true;
             this.outSourced_radio.CheckedChanged += new System.EventHandler(this.OutSourced_Change);
             // 
-            // partID
+            // partIDInput
             // 
-            this.partID.Location = new System.Drawing.Point(390, 175);
-            this.partID.Name = "partID";
-            this.partID.ReadOnly = true;
-            this.partID.Size = new System.Drawing.Size(296, 31);
-            this.partID.TabIndex = 3;
+            this.partIDInput.Location = new System.Drawing.Point(390, 175);
+            this.partIDInput.Name = "partIDInput";
+            this.partIDInput.ReadOnly = true;
+            this.partIDInput.Size = new System.Drawing.Size(296, 31);
+            this.partIDInput.TabIndex = 3;
             // 
             // nameInput
             // 
@@ -244,7 +244,7 @@
             this.Controls.Add(this.partPriceInput);
             this.Controls.Add(this.inventoryInput);
             this.Controls.Add(this.nameInput);
-            this.Controls.Add(this.partID);
+            this.Controls.Add(this.partIDInput);
             this.Controls.Add(this.outSourced_radio);
             this.Controls.Add(this.inHouse_radio);
             this.Controls.Add(this.label1);
@@ -261,7 +261,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton inHouse_radio;
         private System.Windows.Forms.RadioButton outSourced_radio;
-        private System.Windows.Forms.TextBox partID;
+        private System.Windows.Forms.TextBox partIDInput;
         private System.Windows.Forms.TextBox nameInput;
         private System.Windows.Forms.TextBox inventoryInput;
         private System.Windows.Forms.TextBox partPriceInput;

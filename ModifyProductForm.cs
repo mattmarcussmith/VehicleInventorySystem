@@ -13,26 +13,26 @@ namespace matthewsmith_c968
 {
     public partial class ModifyProductForm : Form
     {
+        MainForm MainScreen = (MainForm)Application.OpenForms["MainForm"];
         BindingList<Part> associatedParts = new BindingList<Part>();
 
-        private int generatedID;
+
         private Product modifiedProduct;
 
         public ModifyProductForm(int generatedID, Product modifiedProduct)
         {
             InitializeComponent();
 
-            this.generatedID = generatedID;
             this.modifiedProduct = modifiedProduct;
 
-            
+
             productIDInput.Text = generatedID.ToString();
 
             nameInput.Text = modifiedProduct.Name;
             inventoryInput.Text = modifiedProduct.InStock.ToString();
-            partPriceInput.Text = modifiedProduct.Price.ToString();
+            productPriceInput.Text = modifiedProduct.Price.ToString();
             maxInput.Text = modifiedProduct.Max.ToString();
-            minInput.Text = modifiedProduct.Min.ToString(); 
+            minInput.Text = modifiedProduct.Min.ToString();
 
             this.Text = "Modify Product";
 
@@ -103,7 +103,7 @@ namespace matthewsmith_c968
             }
             if (matchingPartFound == null)
             {
-                MessageBox.Show("This Part ID does not excist");
+                MessageBox.Show("This Part ID does not exist");
                 return;
             }
 
@@ -123,113 +123,127 @@ namespace matthewsmith_c968
             }
         }
 
-            // *************** Associated Part added ***************//
-            private void AddAssociatedPart_Button(object sender, EventArgs e)
+        // *************** Associated Part added ***************//
+        private void AddAssociatedPart_Button(object sender, EventArgs e)
+        {
+            if (partInventoryGrid.SelectedRows.Count == 0)
             {
-                if (partInventoryGrid.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("No part was selected to add to associated parts", "Please make a selection!");
-                    return;
-                }
-                foreach (DataGridViewRow currentIteration in partInventoryGrid.SelectedRows)
-                {
-                    Part part = currentIteration.DataBoundItem as Part;
-                    partInventoryGrid.ClearSelection();
-
-                    if (part != null)
-                    {
-                        associatedParts.Add(part);
-                        return;
-                    }
-
-                }
+                MessageBox.Show("No part was selected to add to associated parts", "Please make a selection!");
+                return;
             }
-            private void DeleteAssociatedPart_Button(object sender, EventArgs e)
+            foreach (DataGridViewRow currentIteration in partInventoryGrid.SelectedRows)
             {
-                if (associatedPartsGrid.SelectedRows.Count == 0)
+                Part part = currentIteration.DataBoundItem as Part;
+                partInventoryGrid.ClearSelection();
+
+                if (part != null)
                 {
-                    MessageBox.Show("No part was selected to delete", "Please make a selection!");
+                    associatedParts.Add(part);
                     return;
                 }
 
+            }
+        }
+        private void DeleteAssociatedPart_Button(object sender, EventArgs e)
+        {
+            if (associatedPartsGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("No part was selected to delete", "Please make a selection!");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Are you sure you want to delete?", "This cannot be undone.");
 
+            if (result == DialogResult.OK)
+            {
                 foreach (DataGridViewRow selectedRow in associatedPartsGrid.SelectedRows)
                 {
                     associatedPartsGrid.Rows.RemoveAt(selectedRow.Index);
                 }
             }
-            private void SaveAssociatedPart_Button(object sender, EventArgs e)
+
+        }
+        private void SaveAssociatedPart_Button(object sender, EventArgs e)
+        {
+
+
+            if (!int.TryParse(productIDInput.Text, out int productID))
             {
-
-               
-                // Error Handling for String values
-                if (!int.TryParse(inventoryInput.Text, out int _))
-                {
-                    MessageBox.Show("Please enter a numeric value for minmum.");
-                    return;
-                }
-                if (!decimal.TryParse(partPriceInput.Text, out decimal _))
-                {
-                    MessageBox.Show("Please enter a decimal value for price.");
-                    return;
-                }
-                if (!int.TryParse(maxInput.Text, out int _))
-                {
-                    MessageBox.Show("Please enter a numeric value for maximum.");
-                    return;
-                }
-                if (!int.TryParse(minInput.Text, out int _))
-                {
-                    MessageBox.Show("Please enter a numeric value for minimum.");
-                    return;
-                }
-                // Parse to Integer
-                string name = nameInput.Text;
-               
-                int minimumQuantity = int.Parse(minInput.Text);
-                int maximumQuantity = int.Parse(maxInput.Text);
-                int price = int.Parse(partPriceInput.Text);
-                int totalStock = int.Parse(inventoryInput.Text);
-
-                // Error Handling for Integer conditions
-                if (minimumQuantity > maximumQuantity)
-                {
-                    MessageBox.Show("Error: Min value cannot be greater than Max.");
-                    return;
-                }
-                if (totalStock < maximumQuantity || totalStock < minimumQuantity)
-                {
-                    MessageBox.Show("Error: Inventory must be between Max and Min");
-                    return;
-                }
-                if (associatedParts.Count <= 0)
-                {
-                    MessageBox.Show("You must pick an assoicated part");
+                MessageBox.Show("Unknown generated Product ID Error.");
                 return;
-                }
+            }
+
+            // Parse minimumQuantity
+            if (!int.TryParse(minInput.Text, out int minimumQuantity))
+            {
+                MessageBox.Show("Error: Minimum quantity must be a valid integer.");
+                return;
+            }
+
+            // Parse maximumQuantity
+            if (!int.TryParse(maxInput.Text, out int maximumQuantity))
+            {
+                MessageBox.Show("Error: Maximum quantity must be a valid integer.");
+                return;
+            }
+
+            // Parse totalStock
+            if (!int.TryParse(inventoryInput.Text, out int totalStock))
+            {
+                MessageBox.Show("Error: Total stock must be a valid integer.");
+                return;
+            }
+
+            // Parse partPrice
+            if (!decimal.TryParse(productPriceInput.Text, out decimal productPrice))
+            {
+                MessageBox.Show("Error: Part price must be a valid decimal value.");
+                return;
+            }
+
+            if (minimumQuantity > maximumQuantity)
+            {
+                MessageBox.Show("Error: Your minimum exceeds your maximum.");
+                return;
+            }
+            if (totalStock < minimumQuantity || totalStock > maximumQuantity)
+            {
+                MessageBox.Show("Error: Inventory must be between minimum and maximum");
+                return;
+            }
+            // Parse to Integer
+            string name = nameInput.Text;
 
 
-            
+            if (associatedParts.Count <= 0)
+            {
+                MessageBox.Show("You must pick an assoicated part");
+                return;
+            }
 
-
+            modifiedProduct.ProductID = productID;
             modifiedProduct.Name = name;
             modifiedProduct.InStock = totalStock;
-            modifiedProduct.Price = price;
+            modifiedProduct.Price = productPrice;
             modifiedProduct.Max = maximumQuantity;
             modifiedProduct.Min = minimumQuantity;
 
             modifiedProduct.AssociatedParts.Clear();
 
-            foreach (Part part in associatedParts)
-                {
-                    modifiedProduct.AssociatedParts.Add(part);
-                }
-          
-                Close();
 
+            foreach (Part part in associatedParts)
+            {
+                modifiedProduct.AssociatedParts.Add(part);
             }
 
-     
+            MainScreen.MainScreen();
+            MainScreen.productGrid.Update();
+            MainScreen.productGrid.Refresh();
+
+            Close();
+
+        }
+
+
 
         private void CancelModifyPart(object sender, EventArgs e)
         {
