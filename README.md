@@ -3,24 +3,25 @@
 This Inventory Management System is designed to streamline the inventory processes for a small manufacturing organization. 
 It provides a user-friendly interface for adding, modifying, and deleting parts and products, as well as searching functionality.
 
-Key Features:
-User Interface:
-The main form serves as the central hub, featuring intuitive controls for managing parts and products.
-Lists display existing parts and products for easy reference.
-Textboxes facilitate quick searching of inventory items.
 
-Add Part Form:
-Users can seamlessly add new parts to the inventory.
-Clear radio buttons allow for the selection between In-House and Outsourced parts.
-Validation ensures accurate data entry, preventing errors.
+## Technologies used
+* C#
+* WinForms 
 
-Modify Part Form:
-Provides a user-friendly interface for updating existing parts.
-Pre-populated fields streamline the modification process, enhancing efficiency.
+## How to find the App:
+1. Click the link www.https://mattsmithportfolio.com
+3. Scroll down to the portfolio section
+4. Click the link to the Inventory Management system using WinForms
 
-Add Product Form:
-Enables users to create new products effortlessly.
-Allows association of multiple parts with each product, enhancing flexibility.
+   
+## Example:
+The user is adding a vehicle part to the inventory.
+   
+![Header Section](/assets/inventory-system-screenshot.PNG)
 
-Technologies Used:
-Developed using the WinForms framework for creating desktop applications in C#.
+## Example Two:
+The user is modifying the parts associated with the product (vehicle).
+
+![Portfolio Section](/assets/inventory-system-screenshot-two.PNG)
+
+
