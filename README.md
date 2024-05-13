@@ -8,10 +8,10 @@ It provides a user-friendly interface for adding, modifying, and deleting parts 
 * C#
 * WinForms 
 
-## How to find the App:
+## How to find the App
 1. Click the link www.https://mattsmithportfolio.com
 3. Scroll down to the portfolio section
-4. Click the link to the Inventory Management system to demo.
+4. Click the link to the Inventory Management system to demo
 
    
 ## Example:
