@@ -6,20 +6,16 @@ It provides a user-friendly interface for adding, modifying, and deleting parts 
 
 ## Technologies used
 * C#
+* .NET 4.7
 * WinForms 
 
-## How to find the App
-1. Click the link www.https://mattsmithportfolio.com
-3. Scroll down to the portfolio section
-4. Click the link to the Inventory Management system to demo
-
-   
-## Example:
-The user is adding a vehicle part to the inventory.
+## How To Use The App
+1. Download the executable file from the release section on the right side of the repo.
+2. When the application launches, it should look like this.
    
 ![Header Section](/assets/inventory-system-screenshot.PNG)
 
-## Example Two:
+## Example:
 The user is modifying the parts associated with the product (vehicle).
 
 ![Portfolio Section](/assets/inventory-system-screenshot-two.PNG)
