@@ -403,7 +403,7 @@ namespace matthewsmith_c968.models
         {
             foreach(Part currentIteration in Parts)
             {
-                if(currentIteration.PartID != partID)
+                if(currentIteration.PartID == partID)
                 {
                    
                     currentIteration.Name = updatedPart.Name;
@@ -417,7 +417,7 @@ namespace matthewsmith_c968.models
                         inHouseParts.MachineID = updateInhouseParts.MachineID;
                         
                     }
-                    if(currentIteration is Outsourced outSourcedParts && updatedPart is Outsourced updatedOutSourcedParts)
+                     else if (currentIteration is Outsourced outSourcedParts && updatedPart is Outsourced updatedOutSourcedParts)
                     {
                         outSourcedParts.CompanyName = updatedOutSourcedParts.CompanyName;
                        

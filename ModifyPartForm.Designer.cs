@@ -184,6 +184,7 @@
             // outSourced_radio
             // 
             this.outSourced_radio.AutoSize = true;
+            this.outSourced_radio.Checked = true;
             this.outSourced_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
             this.outSourced_radio.Location = new System.Drawing.Point(567, 118);
             this.outSourced_radio.Name = "outSourced_radio";
@@ -202,7 +203,6 @@
             this.inHouse_radio.Name = "inHouse_radio";
             this.inHouse_radio.Size = new System.Drawing.Size(141, 33);
             this.inHouse_radio.TabIndex = 19;
-            this.inHouse_radio.TabStop = true;
             this.inHouse_radio.Text = "In-House";
             this.inHouse_radio.UseVisualStyleBackColor = true;
             this.inHouse_radio.CheckedChanged += new System.EventHandler(this.InHouse_Change);
@@ -256,7 +256,7 @@
         private System.Windows.Forms.TextBox inventoryInput;
         private System.Windows.Forms.TextBox nameInput;
         private System.Windows.Forms.TextBox partIDInput;
-        private System.Windows.Forms.RadioButton outSourced_radio;
-        private System.Windows.Forms.RadioButton inHouse_radio;
+        public System.Windows.Forms.RadioButton inHouse_radio;
+        public System.Windows.Forms.RadioButton outSourced_radio;
     }
 }

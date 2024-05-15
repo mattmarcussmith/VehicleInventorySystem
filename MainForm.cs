@@ -135,25 +135,24 @@ namespace matthewsmith_c968
         private void PartModify_Button(object sender, EventArgs e)
         {
             Part part = (Part)partGrid.CurrentRow.DataBoundItem;
-           int generatedID = GeneratedID();
-
-
+            int originalPartID = part.PartID;
+      
             if (partGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No part was selected to modify", "Please make a selection!");
                 return;
             }
 
-            if (part is Inhouse inhouse)
+            if (part is Inhouse inhouse )
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, inhouse);
+                ModifyPartForm form = new ModifyPartForm(originalPartID, inhouse);
 
                 form.ShowDialog();
                 return;
             }
             else if (part is Outsourced outsourced)
             {
-                ModifyPartForm form = new ModifyPartForm(generatedID, outsourced);
+                ModifyPartForm form = new ModifyPartForm(originalPartID, outsourced);
                 form.ShowDialog();
                 return;
 

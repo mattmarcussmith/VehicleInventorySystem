@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,55 +17,45 @@ namespace matthewsmith_c968
     public partial class ModifyPartForm : Form
     {
         MainForm MainScreen = (MainForm)Application.OpenForms["MainForm"];
+        
 
         public ModifyPartForm()
         {
             InitializeComponent();
             this.Text = "Modify Part";
-
-
-        }
-        // Changes the Label to In-House when the radio button is clicked
-        private void InHouse_Change(object sender, EventArgs e)
-        {
-            sourceLabel.Text = "Machine ID";
-        }
-        // Changes the Label to Outsourced when the radio button is clicked
-        private void OutSourced_Change(object sender, EventArgs e)
-        {
-            sourceLabel.Text = "Company Name";
-
+      
 
         }
 
-        
-        public ModifyPartForm(int generatedID, Inhouse inHousePart)
+
+        public ModifyPartForm(int originalID, Inhouse inHousePart)
         {
             InitializeComponent();
 
-            partIDInput.Text = generatedID.ToString();
+            partIDInput.Text = originalID.ToString();
             nameInput.Text = inHousePart.Name;
             inventoryInput.Text = inHousePart.InStock.ToString();
             partPrice.Text = inHousePart.Price.ToString();
             minInput.Text = inHousePart.Min.ToString();
             maxInput.Text = inHousePart.Max.ToString();
             sourceInput.Text = inHousePart.MachineID.ToString();
-
+          
+            
 
         }
       
-        public ModifyPartForm(int generatedID, Outsourced outSourcedPart)
+        public ModifyPartForm(int originalID, Outsourced outSourcedPart)
         {
             InitializeComponent();
-
-            partIDInput.Text = generatedID.ToString();
+          
+            partIDInput.Text = originalID.ToString();
             nameInput.Text = outSourcedPart.Name;
             inventoryInput.Text = outSourcedPart.InStock.ToString();
             partPrice.Text = outSourcedPart.Price.ToString();
             minInput.Text = outSourcedPart.Min.ToString();
             maxInput.Text = outSourcedPart.Max.ToString();
             sourceInput.Text = outSourcedPart.CompanyName;
-
+            outSourced_radio.Checked = false;
 
         }
 
@@ -125,38 +117,40 @@ namespace matthewsmith_c968
 
             // *************** Values passed based on radio button clicked  **++++++++++++//
             if (inHouse_radio.Checked)
-            {
-                if (!int.TryParse(sourceInput.Text, out int machineID))
-                {
-                    MessageBox.Show("Error: Machine ID must be numeric values");
-                    return;
-                }
-                // Passing inHouse object with MachineID
-                Inhouse inHouse = new Inhouse(partID, name, totalStock, price, minimumQuantity, maximumQuantity, machineID);
+            { 
+         
+                Inhouse inHouse = new Inhouse(partID, name, totalStock, price, minimumQuantity, maximumQuantity, int.Parse(sourceInput.Text));
                 Inventory.UpdatePart(partID, inHouse);
-
-
+                inHouse_radio.Checked = true;
+ 
             }
-            else if (outSourced_radio.Checked)
+            if(outSourced_radio.Checked)
             {
-                string companyName = sourceInput.Text;
-                if (companyName.Any(char.IsDigit))
-                {
-                    MessageBox.Show("Error: Company Name must be character values.");
-                    return;
-                }
-
-                Outsourced outsourced = new Outsourced(partID, name, totalStock, price, minimumQuantity, maximumQuantity, companyName);
+                
+                Outsourced outsourced = new Outsourced(partID, name, totalStock, price, minimumQuantity, maximumQuantity, sourceInput.Text);
                 Inventory.UpdatePart(partID, outsourced);
+                outSourced_radio.Checked = true;
 
-            }
+
+            } 
 
 
             Close();
-            // Refresh the data source of the grid
-            MainScreen.MainScreen();
+       
             MainScreen.partGrid.Update();
             MainScreen.partGrid.Refresh();
+        }
+        // Changes the Label to In-House when the radio button is clicked
+        private void InHouse_Change(object sender, EventArgs e)
+        {
+            sourceLabel.Text = "Machine ID";
+
+        }
+        // Changes the Label to Outsourced when the radio button is clicked
+        private void OutSourced_Change(object sender, EventArgs e)
+        {
+            sourceLabel.Text = "Company Name";
+
         }
         private void CancelModifyPart(object sender, EventArgs e)
         {
