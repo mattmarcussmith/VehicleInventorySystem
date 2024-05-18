@@ -51,71 +51,79 @@
             // sourceLabel
             // 
             this.sourceLabel.AutoSize = true;
-            this.sourceLabel.Location = new System.Drawing.Point(168, 518);
+            this.sourceLabel.Location = new System.Drawing.Point(112, 332);
+            this.sourceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.sourceLabel.Name = "sourceLabel";
-            this.sourceLabel.Size = new System.Drawing.Size(120, 25);
+            this.sourceLabel.Size = new System.Drawing.Size(74, 16);
             this.sourceLabel.TabIndex = 36;
             this.sourceLabel.Text = "Machine ID";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(531, 444);
+            this.label7.Location = new System.Drawing.Point(354, 284);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 25);
+            this.label7.Size = new System.Drawing.Size(28, 16);
             this.label7.TabIndex = 35;
             this.label7.Text = "Min";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 449);
+            this.label6.Location = new System.Drawing.Point(191, 287);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 25);
+            this.label6.Size = new System.Drawing.Size(32, 16);
             this.label6.TabIndex = 34;
             this.label6.Text = "Max";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(230, 381);
+            this.label5.Location = new System.Drawing.Point(153, 244);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(123, 25);
+            this.label5.Size = new System.Drawing.Size(75, 16);
             this.label5.TabIndex = 33;
             this.label5.Text = "Price / Cost";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 337);
+            this.label4.Location = new System.Drawing.Point(169, 216);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 25);
+            this.label4.Size = new System.Drawing.Size(61, 16);
             this.label4.TabIndex = 32;
             this.label4.Text = "Inventory";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(287, 282);
+            this.label3.Location = new System.Drawing.Point(191, 180);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 25);
+            this.label3.Size = new System.Drawing.Size(44, 16);
             this.label3.TabIndex = 31;
             this.label3.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 231);
+            this.label2.Location = new System.Drawing.Point(194, 148);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 25);
+            this.label2.Size = new System.Drawing.Size(20, 16);
             this.label2.TabIndex = 30;
             this.label2.Text = "ID";
             // 
             // cancelPartButton
             // 
-            this.cancelPartButton.Location = new System.Drawing.Point(677, 595);
+            this.cancelPartButton.Location = new System.Drawing.Point(451, 381);
+            this.cancelPartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelPartButton.Name = "cancelPartButton";
-            this.cancelPartButton.Size = new System.Drawing.Size(114, 48);
+            this.cancelPartButton.Size = new System.Drawing.Size(76, 31);
             this.cancelPartButton.TabIndex = 29;
             this.cancelPartButton.Text = "Cancel";
             this.cancelPartButton.UseVisualStyleBackColor = true;
@@ -123,9 +131,10 @@
             // 
             // savePartButton
             // 
-            this.savePartButton.Location = new System.Drawing.Point(536, 595);
+            this.savePartButton.Location = new System.Drawing.Point(357, 381);
+            this.savePartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.savePartButton.Name = "savePartButton";
-            this.savePartButton.Size = new System.Drawing.Size(125, 48);
+            this.savePartButton.Size = new System.Drawing.Size(83, 31);
             this.savePartButton.TabIndex = 28;
             this.savePartButton.Text = "Save";
             this.savePartButton.UseVisualStyleBackColor = true;
@@ -133,64 +142,70 @@
             // 
             // sourceInput
             // 
-            this.sourceInput.Location = new System.Drawing.Point(365, 512);
+            this.sourceInput.Location = new System.Drawing.Point(243, 328);
+            this.sourceInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.sourceInput.Name = "sourceInput";
-            this.sourceInput.Size = new System.Drawing.Size(192, 31);
+            this.sourceInput.Size = new System.Drawing.Size(129, 22);
             this.sourceInput.TabIndex = 27;
             // 
             // minInput
             // 
-            this.minInput.Location = new System.Drawing.Point(607, 444);
+            this.minInput.Location = new System.Drawing.Point(405, 284);
+            this.minInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.minInput.Name = "minInput";
-            this.minInput.Size = new System.Drawing.Size(100, 31);
+            this.minInput.Size = new System.Drawing.Size(68, 22);
             this.minInput.TabIndex = 26;
             // 
             // maxInput
             // 
-            this.maxInput.Location = new System.Drawing.Point(365, 444);
+            this.maxInput.Location = new System.Drawing.Point(243, 284);
+            this.maxInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.maxInput.Name = "maxInput";
-            this.maxInput.Size = new System.Drawing.Size(141, 31);
+            this.maxInput.Size = new System.Drawing.Size(95, 22);
             this.maxInput.TabIndex = 25;
             // 
             // partPrice
             // 
-            this.partPrice.Location = new System.Drawing.Point(365, 381);
+            this.partPrice.Location = new System.Drawing.Point(243, 244);
+            this.partPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.partPrice.Name = "partPrice";
-            this.partPrice.Size = new System.Drawing.Size(296, 31);
+            this.partPrice.Size = new System.Drawing.Size(199, 22);
             this.partPrice.TabIndex = 24;
             // 
             // inventoryInput
             // 
-            this.inventoryInput.Location = new System.Drawing.Point(365, 334);
+            this.inventoryInput.Location = new System.Drawing.Point(243, 214);
+            this.inventoryInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.inventoryInput.Name = "inventoryInput";
-            this.inventoryInput.Size = new System.Drawing.Size(296, 31);
+            this.inventoryInput.Size = new System.Drawing.Size(199, 22);
             this.inventoryInput.TabIndex = 23;
             // 
             // nameInput
             // 
-            this.nameInput.Location = new System.Drawing.Point(365, 282);
+            this.nameInput.Location = new System.Drawing.Point(243, 180);
+            this.nameInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(296, 31);
+            this.nameInput.Size = new System.Drawing.Size(199, 22);
             this.nameInput.TabIndex = 22;
             // 
             // partIDInput
             // 
-            this.partIDInput.Location = new System.Drawing.Point(365, 231);
+            this.partIDInput.Location = new System.Drawing.Point(243, 148);
+            this.partIDInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.partIDInput.Name = "partIDInput";
             this.partIDInput.ReadOnly = true;
-            this.partIDInput.Size = new System.Drawing.Size(296, 31);
+            this.partIDInput.Size = new System.Drawing.Size(199, 22);
             this.partIDInput.TabIndex = 21;
             // 
             // outSourced_radio
             // 
             this.outSourced_radio.AutoSize = true;
-            this.outSourced_radio.Checked = true;
             this.outSourced_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
-            this.outSourced_radio.Location = new System.Drawing.Point(567, 118);
+            this.outSourced_radio.Location = new System.Drawing.Point(378, 76);
+            this.outSourced_radio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.outSourced_radio.Name = "outSourced_radio";
-            this.outSourced_radio.Size = new System.Drawing.Size(169, 33);
+            this.outSourced_radio.Size = new System.Drawing.Size(107, 22);
             this.outSourced_radio.TabIndex = 20;
-            this.outSourced_radio.TabStop = true;
             this.outSourced_radio.Text = "Outsourced";
             this.outSourced_radio.UseVisualStyleBackColor = true;
             this.outSourced_radio.CheckedChanged += new System.EventHandler(this.OutSourced_Change);
@@ -199,9 +214,10 @@
             // 
             this.inHouse_radio.AutoSize = true;
             this.inHouse_radio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.875F);
-            this.inHouse_radio.Location = new System.Drawing.Point(365, 118);
+            this.inHouse_radio.Location = new System.Drawing.Point(243, 76);
+            this.inHouse_radio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.inHouse_radio.Name = "inHouse_radio";
-            this.inHouse_radio.Size = new System.Drawing.Size(141, 33);
+            this.inHouse_radio.Size = new System.Drawing.Size(89, 22);
             this.inHouse_radio.TabIndex = 19;
             this.inHouse_radio.Text = "In-House";
             this.inHouse_radio.UseVisualStyleBackColor = true;
@@ -209,9 +225,9 @@
             // 
             // ModifyPartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 1017);
+            this.ClientSize = new System.Drawing.Size(706, 651);
             this.Controls.Add(this.sourceLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -230,6 +246,7 @@
             this.Controls.Add(this.partIDInput);
             this.Controls.Add(this.outSourced_radio);
             this.Controls.Add(this.inHouse_radio);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ModifyPartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModifyPartForm";
@@ -249,7 +266,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cancelPartButton;
         private System.Windows.Forms.Button savePartButton;
-        private System.Windows.Forms.TextBox sourceInput;
         private System.Windows.Forms.TextBox minInput;
         private System.Windows.Forms.TextBox maxInput;
         private System.Windows.Forms.TextBox partPrice;
@@ -258,5 +274,6 @@
         private System.Windows.Forms.TextBox partIDInput;
         public System.Windows.Forms.RadioButton inHouse_radio;
         public System.Windows.Forms.RadioButton outSourced_radio;
+        public System.Windows.Forms.TextBox sourceInput;
     }
 }

@@ -8,7 +8,7 @@ namespace matthewsmith_c968.models
 {
     public class Inhouse : Part
     {
-        public int machineID;
+      
        public int MachineID { get; set; }
 
     public Inhouse(){}

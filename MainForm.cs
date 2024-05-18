@@ -1,48 +1,24 @@
 ﻿using matthewsmith_c968.models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace matthewsmith_c968
 {
     public partial class MainForm : Form
     {
-
-        public static Random random = new Random();
-        public int generateID;
-        private int GeneratedID()
-        {
-            int generatedID = random.Next(10000, 99999);
-
-            return generatedID;
-        }
+       
         public MainForm()
         {
             InitializeComponent();
-            MainScreen();
-
+            
             this.Text = "Main Screen";
-
-
-        }
-        public void MainScreen()
-        {
-            // Prepopulate the mock data for Parts and Products
-            Inventory.mockData();
-
+            // **************************** Instantiates Dummy Data ***************************//
+            Inventory.MockData();
+         
             // Set the data to the Parts Grid View
             var totalPartsInventory = new BindingSource();
             totalPartsInventory.DataSource = Inventory.Parts;
             partGrid.DataSource = totalPartsInventory;
-
-
             // Entire row selected
             partGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Read only Grid
@@ -67,7 +43,15 @@ namespace matthewsmith_c968
             productGrid.AllowUserToAddRows = false;
 
         }
+        // **************************** Creates random ID for new Part ***************************//
+        public static Random random = new Random();
+        public int generateID;
+        private int GeneratedID()
+        {
+            int generatedID = random.Next(10000, 99999);
 
+            return generatedID;
+        }
         // Clears selected row on application start
         private void ClearBindingParts(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -78,9 +62,6 @@ namespace matthewsmith_c968
         {
             productGrid.ClearSelection();
         }
-
-
-
 
         // *************** Search Part Event ***************//
         private void SearchPart_Button(object sender, EventArgs e)
@@ -118,51 +99,34 @@ namespace matthewsmith_c968
                     currentIteration.Selected = false;
                 }
             }
-
         }
-
-
         // *************** Part Click Events ***************//
-
-        // Part Add 
         private void PartAdd_Button(object sender, EventArgs e)
         {
             int generatedID = GeneratedID();
             new AddPartForm(generatedID).ShowDialog();
         }
 
-        // Part Modify
         private void PartModify_Button(object sender, EventArgs e)
         {
-            Part part = (Part)partGrid.CurrentRow.DataBoundItem;
-            int originalPartID = part.PartID;
-      
             if (partGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No part was selected to modify", "Please make a selection!");
                 return;
             }
 
-            if (part is Inhouse inhouse )
+            Part selectedPart = (Part)partGrid.CurrentRow.DataBoundItem;
+            if (selectedPart is Inhouse inhouse)
             {
-                ModifyPartForm form = new ModifyPartForm(originalPartID, inhouse);
-
-                form.ShowDialog();
-                return;
+                // Open ModifyPartForm for Inhouse parts
+                new ModifyPartForm(inhouse).ShowDialog();
             }
-            else if (part is Outsourced outsourced)
+            else if (selectedPart is Outsourced outsourced)
             {
-                ModifyPartForm form = new ModifyPartForm(originalPartID, outsourced);
-                form.ShowDialog();
-                return;
-
-            }
-            else
-            {
-                MessageBox.Show("No part found with our inventory or suppliers. Please try again.");
+                // Open ModifyPartForm for Outsourced parts
+                new ModifyPartForm(outsourced).ShowDialog();
             }
         }
-        // Part Delete
         private void PartDelete_Button(object sender, EventArgs e)
         {
 
@@ -218,8 +182,8 @@ namespace matthewsmith_c968
                 }
             }
         }
+
         // *************** Product Click Events ***************//
-        // Add Product
         private void ProductSave_Button(object sender, EventArgs e)
         {
             AddProductForm addNewProduct = new AddProductForm(generateID);
@@ -229,17 +193,15 @@ namespace matthewsmith_c968
         private void ProductModify_Button(object sender, EventArgs e)
         {
             Product selectedProduct = (Product)productGrid.CurrentRow.DataBoundItem;
-            int generatedID = GeneratedID();
+
             if (productGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a Product to modify. ");
                 return;
             }
-            ModifyProductForm modifyProduct = new ModifyProductForm(generatedID, selectedProduct);
-            modifyProduct.ShowDialog();
+            new ModifyProductForm( selectedProduct).ShowDialog();
         }
 
-        // Delete Product
         private void ProductDelete_Button(object sender, EventArgs e)
         {
             if (productGrid.SelectedRows.Count == 0)
@@ -267,7 +229,6 @@ namespace matthewsmith_c968
                 }
             }
         }
-
         private void ExitProgram(object sender, EventArgs e)
         {
             Application.Exit();

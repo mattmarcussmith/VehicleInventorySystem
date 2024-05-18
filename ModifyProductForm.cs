@@ -1,33 +1,20 @@
 ﻿using matthewsmith_c968.models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace matthewsmith_c968
 {
     public partial class ModifyProductForm : Form
     {
-        MainForm MainScreen = (MainForm)Application.OpenForms["MainForm"];
         BindingList<Part> associatedParts = new BindingList<Part>();
+        MainForm MainScreen = (MainForm)Application.OpenForms["MainForm"];
 
-
-        private Product modifiedProduct;
-
-        public ModifyProductForm(int generatedID, Product modifiedProduct)
+        public ModifyProductForm(Product modifiedProduct)
         {
             InitializeComponent();
 
-            this.modifiedProduct = modifiedProduct;
-
-
-            productIDInput.Text = generatedID.ToString();
-
+            productIDInput.Text = modifiedProduct.ProductID.ToString();
             nameInput.Text = modifiedProduct.Name;
             inventoryInput.Text = modifiedProduct.InStock.ToString();
             productPriceInput.Text = modifiedProduct.Price.ToString();
@@ -51,7 +38,6 @@ namespace matthewsmith_c968
             associatedInventory.DataSource = associatedParts;
             associatedPartsGrid.DataSource = associatedInventory;
 
-
             // *************** Add Product grid settings ***************//
             // Entire row selected
             partInventoryGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -71,8 +57,6 @@ namespace matthewsmith_c968
             associatedPartsGrid.MultiSelect = false;
             // Cannot create rows
             associatedPartsGrid.AllowUserToAddRows = false;
-
-
         }
         // Clears selected row on application start
         private void ClearBindingParts(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -85,6 +69,7 @@ namespace matthewsmith_c968
             associatedPartsGrid.ClearSelection();
         }
 
+        // *************** Search ***************//
         private void SearchPart_Button(object sender, EventArgs e)
         {
             string searchValue = searchPartInput.Text;
@@ -106,7 +91,6 @@ namespace matthewsmith_c968
                 MessageBox.Show("This Part ID does not exist");
                 return;
             }
-
             foreach (DataGridViewRow currentIteration in partInventoryGrid.Rows)
             {
                 Part part = (Part)currentIteration.DataBoundItem;
@@ -122,7 +106,6 @@ namespace matthewsmith_c968
                 }
             }
         }
-
         // *************** Associated Part added ***************//
         private void AddAssociatedPart_Button(object sender, EventArgs e)
         {
@@ -144,6 +127,7 @@ namespace matthewsmith_c968
 
             }
         }
+        // *************** Delete Associated Parts ***************//
         private void DeleteAssociatedPart_Button(object sender, EventArgs e)
         {
             if (associatedPartsGrid.SelectedRows.Count == 0)
@@ -160,15 +144,14 @@ namespace matthewsmith_c968
                     associatedPartsGrid.Rows.RemoveAt(selectedRow.Index);
                 }
             }
-
         }
         private void SaveAssociatedPart_Button(object sender, EventArgs e)
         {
-
+            // *************** Validating user input ***************//
 
             if (!int.TryParse(productIDInput.Text, out int productID))
             {
-                MessageBox.Show("Unknown generated Product ID Error.");
+                MessageBox.Show("Unknown Product ID Error.");
                 return;
             }
 
@@ -210,7 +193,7 @@ namespace matthewsmith_c968
                 MessageBox.Show("Error: Inventory must be between minimum and maximum");
                 return;
             }
-            // Parse to Integer
+
             string name = nameInput.Text;
 
 
@@ -220,31 +203,19 @@ namespace matthewsmith_c968
                 return;
             }
 
-            modifiedProduct.ProductID = productID;
-            modifiedProduct.Name = name;
-            modifiedProduct.InStock = totalStock;
-            modifiedProduct.Price = productPrice;
-            modifiedProduct.Max = maximumQuantity;
-            modifiedProduct.Min = minimumQuantity;
-
-            modifiedProduct.AssociatedParts.Clear();
-
-
+            // *************** Updates the Product Inventory and refresh main screen Product grid ***************//
+            Product product = new Product(productID, name, productPrice, totalStock, minimumQuantity, maximumQuantity);
             foreach (Part part in associatedParts)
             {
-                modifiedProduct.AssociatedParts.Add(part);
+                product.AssociatedParts.Add(part);
             }
-
-            MainScreen.MainScreen();
+            Inventory.UpdateProduct(productID, product);
             MainScreen.productGrid.Update();
             MainScreen.productGrid.Refresh();
 
             Close();
 
         }
-
-
-
         private void CancelModifyPart(object sender, EventArgs e)
         {
             Close();

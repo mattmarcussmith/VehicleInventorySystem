@@ -8,7 +8,6 @@ namespace matthewsmith_c968.models
 {
     public class Outsourced : Part
     {
-        public string companyName;
         public string CompanyName { get; set; }
 
         public Outsourced() { }
